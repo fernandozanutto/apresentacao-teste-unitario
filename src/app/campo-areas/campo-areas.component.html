@@ -1,0 +1,51 @@
+<div class="row ml-0 mr-0">
+  <!-- FILTRO AREA 1 -->
+  <div class="col-{{ tamanhoColuna }} pl-0">
+    <apls-input-group [label]="exibirLabelHierarquia1 ? labelHierarquia1 : ''">
+      <apls-select
+        placeholder="{{ 'label.catalogo' | translate }}"
+        [formControl]="formControlArea1"
+        [compareWith]="compararPorID"
+        [filterCompareWith]="filtrarArea"
+        [multiple]="area1Multiple"
+      >
+        <input aplsInput />
+        <apls-option *ngFor="let item of listaArea1" [value]="item" [attr.chave]="item.id"> {{ item.descricao }}</apls-option>
+      </apls-select>
+    </apls-input-group>
+  </div>
+
+  <!-- FILTRO AREA 2 -->
+  <div *ngIf="formControlArea2" class="col-{{ tamanhoColuna }}" [ngClass]="{ 'pr-0': !formControlArea3 }">
+    <apls-input-group [label]="exibirLabelHierarquia2 ? labelHierarquia2 : ''">
+      <apls-select
+        placeholder="{{ 'label.catalogo' | translate }}"
+        [formControl]="formControlArea2"
+        [compareWith]="compararPorID"
+        [filterCompareWith]="filtrarArea"
+        [multiple]="area2Multiple"
+      >
+        <input aplsInput />
+        <div class="select-nulo" *ngIf="(listaArea2$ | async)?.length === 0">{{ 'mensagem.nenhum_registro_encontrado' | translate }}</div>
+        <apls-option *ngFor="let item of listaArea2$ | async" [value]="item" [attr.chave]="item.id"> {{ item.descricao }}</apls-option>
+      </apls-select>
+    </apls-input-group>
+  </div>
+
+  <!-- FILTRO AREA 3 -->
+  <div *ngIf="formControlArea3" class="col-{{ tamanhoColuna }} pr-0">
+    <apls-input-group [label]="exibirLabelHierarquia3 ? labelHierarquia3 : ''">
+      <apls-select
+        placeholder="{{ 'label.catalogo' | translate }}"
+        [formControl]="formControlArea3"
+        [compareWith]="compararPorID"
+        [filterCompareWith]="filtrarArea"
+        [multiple]="area3Multiple"
+      >
+        <input aplsInput />
+        <div class="select-nulo" *ngIf="(listaArea3$ | async)?.length === 0">{{ 'mensagem.nenhum_registro_encontrado' | translate }}</div>
+        <apls-option *ngFor="let item of listaArea3$ | async" [value]="item" [attr.chave]="item.id"> {{ item.descricao }}</apls-option>
+      </apls-select>
+    </apls-input-group>
+  </div>
+</div>
