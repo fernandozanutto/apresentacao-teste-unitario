@@ -1,0 +1,75 @@
+@import 'common';
+
+.apls-tab-group {
+  height: 100%;
+  margin: 5px 10px;
+  display: flex;
+  flex-direction: column;
+
+  &.apls-tab-group-inverted-header {
+    flex-direction: column-reverse;
+  }
+}
+
+.apls-tab-label {
+  @include tab-label;
+  position: relative;
+}
+
+@media ($apls-xsmall) {
+  .apls-tab-label {
+    padding: 0 12px;
+  }
+}
+
+@media ($apls-small) {
+  .apls-tab-label {
+    padding: 0 12px;
+  }
+}
+
+.apls-tab-group[apls-stretch-tabs] .apls-tab-label {
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.apls-tab-body-wrapper {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  transition: height $apls-tab-animation-duration $ease-in-out-curve-function;
+}
+
+.apls-tab-body {
+  @include apls-fill;
+  display: block;
+  overflow: hidden;
+
+  flex-basis: 100%;
+
+  &.apls-tab-body-active {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1;
+    flex-grow: 1;
+  }
+
+  .apls-tab-group.apls-tab-group-dynamic-height &.apls-tab-body-active {
+    overflow-y: hidden;
+  }
+}
+
+.triangulo {
+	width: 0;
+	height: 0;
+	border-left: 20px solid;
+	border-top: 17px solid transparent;
+	border-bottom: 17px solid transparent;
+  float: left;
+  margin-left: -25px
+}
+#apls-tab-label-1-0 > div.triangulo {
+  display: none;
+}

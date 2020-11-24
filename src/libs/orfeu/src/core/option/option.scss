@@ -1,0 +1,109 @@
+@import '../style/menu-common';
+@import '../style/vendor-prefixes';
+@import '../style/layout-common';
+@import '~@angular/cdk/_a11y';
+
+.apls-option {
+  @include apls-menu-item-base();
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  color: black;
+  font-size: 12px;
+
+  &:hover:not(.apls-option-disabled),
+  &:focus:not(.apls-option-disabled) {
+    background-color: #fbfbfb !important;
+
+    .apls-option-text{
+      white-space: normal !important;
+      line-height: initial !important;
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  &.apls-active {
+    background-color: #f1f1f1;
+
+    .apls-option-text{
+      white-space: normal !important;
+      line-height: initial !important;
+    }
+  }
+
+  &.apls-selected:not(.apls-option-multiple):not(.apls-option-disabled) {
+    background-color: #f8f9fa;
+  }
+
+  &[aria-disabled='true'] {
+    @include user-select(none);    
+    cursor: not-allowed;
+
+    span {
+      color: #8080809e;
+    }
+  }
+
+  .apls-optgroup &:not(.apls-option-multiple) {
+    padding-left: $apls-menu-side-padding * 2;
+
+    [dir='rtl'] & {
+      padding-left: $apls-menu-side-padding;
+      padding-right: $apls-menu-side-padding * 2;
+    }
+  }
+
+  @include cdk-high-contrast {
+    $high-contrast-border-width: 1px;
+
+    margin: 0 $high-contrast-border-width;
+
+    &.apls-active {
+      border: solid $high-contrast-border-width currentColor;
+      margin: 0;
+    }
+  }
+}
+
+.apls-option-text {
+  display: inline-block;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: unset!important;
+}
+
+.apls-option-ripple {
+  @include apls-fill;
+
+  pointer-events: none;
+
+  @include cdk-high-contrast {
+    opacity: 0.5;
+  }
+}
+
+.apls-option-pseudo-checkbox {
+  $margin: $apls-menu-side-padding / 2;
+  margin-right: $margin;
+
+  [dir='rtl'] & {
+    margin-left: $margin;
+    margin-right: 0;
+  }
+}
+.apls-pseudo-checkbox {
+  width: 17px!important;
+  height: 17px!important;
+}
+.apls-pseudo-checkbox-checked::after {
+  top: 5px!important;
+  bottom: 4px!important;
+}

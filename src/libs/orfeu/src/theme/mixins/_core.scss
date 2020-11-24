@@ -1,0 +1,11 @@
+@import 'elevation';
+
+@mixin apls-core() {
+  @for $zValue from 0 through 24 {
+    .#{$_apls-elevation-prefix}#{$zValue} {
+      @include apls-elevation($zValue);
+    }
+  }
+}
+
+@include apls-core();

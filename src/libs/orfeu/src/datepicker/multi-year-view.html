@@ -1,0 +1,16 @@
+<table class="apls-calendar-table">
+  <thead class="apls-calendar-table-header">
+    <tr><th class="apls-calendar-table-header-divider" colspan="4"></th></tr>
+  </thead>
+  <tbody apls-calendar-body
+         allowDisabledSelection="true"
+         [rows]="_years"
+         [todayValue]="_todayYear"
+         [selectedValue]="_selectedYear"
+         [numCols]="4"
+         [cellAspectRatio]="4 / 7"
+         [activeCell]="_getActiveCell()"
+         (selectedValueChange)="_yearSelected($event)"
+         (keydown)="_handleCalendarBodyKeydown($event)">
+  </tbody>
+</table>

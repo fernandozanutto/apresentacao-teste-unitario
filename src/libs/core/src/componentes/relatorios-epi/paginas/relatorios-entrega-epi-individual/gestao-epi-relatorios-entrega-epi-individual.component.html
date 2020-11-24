@@ -1,0 +1,93 @@
+<form [formGroup]="form">
+  <div class="row">
+    <!-- FILTRO AREA 1 -->
+    <div class="col-4">
+      <apls-input-group [label]="hierarquia1">
+        <apls-select placeholder="{{ 'label.catalogo' | translate }}" formControlName="area1" [compareWith]="compararPorID" [filterCompareWith]="filtrarArea">
+          <input aplsInput />
+          <apls-option *ngFor="let item of listaArea1" [value]="item" [attr.chave]="item.id">{{ item?.descricao }}</apls-option>
+        </apls-select>
+      </apls-input-group>
+    </div>
+
+    <!-- FILTRO AREA 2 -->
+    <div class="col-4">
+      <apls-input-group [label]="hierarquia2">
+        <apls-select placeholder="{{ 'label.catalogo' | translate }}" formControlName="area2" [compareWith]="compararPorID" [filterCompareWith]="filtrarArea">
+          <input aplsInput />
+          <apls-option *ngFor="let item of listaArea2" [value]="item" [attr.chave]="item.id">{{ item?.descricao }}</apls-option>
+        </apls-select>
+      </apls-input-group>
+    </div>
+
+    <!-- FILTRO AREA 3 -->
+    <div class="col-4">
+      <apls-input-group [label]="hierarquia3">
+        <apls-select placeholder="{{ 'label.catalogo' | translate }}" formControlName="area3" [compareWith]="compararPorID" [filterCompareWith]="filtrarArea">
+          <input aplsInput />
+          <apls-option *ngFor="let item of listaArea3" [value]="item" [attr.chave]="item.id">{{ item?.descricao }}</apls-option>
+        </apls-select>
+      </apls-input-group>
+    </div>
+
+    <!-- <div class="col-12">
+      <apls-campo-areas
+        [formControlArea1]="form.get('area1')"
+        [formControlArea2]="form.get('area2')"
+        [formControlArea3]="form.get('area3')"
+        [somenteAtivos]="false"
+      ></apls-campo-areas>
+    </div> -->
+
+    <div class="col-8">
+      <apls-input-group label="{{ 'label.funcionario' | translate }}">
+        <apls-campo-matricula-funcionario
+          [formControlFuncionario]="form.get('funcionario')"
+          [area1]="form.get('area1').value"
+          [area2]="form.get('area2').value"
+          [area3]="form.get('area3').value"
+          [exibirCampoMatricula]="false"
+          [somenteAtivos]="false"
+          [mostrarUsuarioLogado]="false"
+        >
+        </apls-campo-matricula-funcionario>
+      </apls-input-group>
+    </div>
+
+    <div class="col-4">
+      <apls-familia-select [familiaFormControl]="form.get('familia')" [status]="[statusEnum.ATIVO, statusEnum.INATIVO]"></apls-familia-select>
+    </div>
+
+    <div class="col-3">
+      <apls-input-group label="{{ 'label.ca' | translate }}">
+        <input aplsInput InputNumerico formControlName="ca" type="text" maxlength="8" />
+      </apls-input-group>
+    </div>
+
+    <div class="col-9">
+      <apls-epi-select [epiFormControl]="form.get('epi')" [listaFamilia]="familiasSelecionadas"></apls-epi-select>
+    </div>
+
+    <div class="col-6">
+      <apls-data-inicio-fim
+        lbDataInicio="{{ 'label.periodo_entrega_inicio' | translate }}"
+        [dataInicioFormControl]="form.get('periodoEntregaInicio')"
+        lbDataFim="{{ 'label.periodo_entrega_fim' | translate }}"
+        [dataFimFormControl]="form.get('periodoEntregaFim')"
+      ></apls-data-inicio-fim>
+    </div>
+
+    <div class="col-6">
+      <apls-estado-entrega-epi-item-select [estadoEntregaEpiItemFormControl]="form.get('situacao')"> </apls-estado-entrega-epi-item-select>
+    </div>
+
+    <div class="col-5">
+      <apls-confirmacao-assinatura-select [confirmacaoAssinaturaFormControl]="form.get('registroEntrega')"> </apls-confirmacao-assinatura-select>
+    </div>
+
+    <div class="col-7 col-checkbox">
+      <apls-checkbox formControlName="excecao">{{ 'label.apenas_excecao' | translate }}</apls-checkbox>
+      <apls-checkbox class="pl-3" formControlName="exibirCampoAssinaturaRodape">{{ 'label.exibir_campo_assinatura' | translate }}</apls-checkbox>
+    </div>
+  </div>
+</form>

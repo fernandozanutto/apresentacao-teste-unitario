@@ -1,0 +1,13 @@
+@mixin modal($color, $disable) {
+  .apls-dialog-title {
+    display: flex;
+    justify-content: space-between;
+    background-color: $color;
+    color: white;
+  }
+
+  .apls-alert-title {
+    background-color: $color;
+    color: white;
+  }
+}

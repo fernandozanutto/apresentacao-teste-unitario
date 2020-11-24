@@ -1,0 +1,21 @@
+<div [class]="montaIcon()" *ngIf="!!data.tipo"></div>
+
+<!-- TITULO -->
+<h1 class="apls-alerta-title" *ngIf="!!data.tipo">
+  {{ montaTitulo() }}
+</h1>
+
+<!-- CONTEUDO DO MODAL -->
+<div class="apls-alerta-content" *ngIf="!!data.texto">
+  <p class="{{data?.class}}">{{data?.texto}}</p>
+</div>
+
+<!-- FOOTER -->
+<div class="apls-alerta-actions" *ngIf="!!data.botoes">
+  <button aplsButton
+    class="btn-small"
+    *ngFor="let item of data.botoes; let i = index" 
+    (click)="callClick(item)" 
+    [color]="item?.color || 'primary'" 
+    [tabindex]="i">{{item.nome}}</button>
+</div>

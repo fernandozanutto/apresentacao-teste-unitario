@@ -1,0 +1,70 @@
+<div cdk-overlay-origin class="apls-select-trigger" aria-hidden="true" (click)="toggle()" #origin="cdkOverlayOrigin" #trigger>
+  <div class="apls-select-value" [ngSwitch]="empty">
+    <span class="apls-select-placeholder apls-input" *ngSwitchCase="true">{{ placeholder || '\u00A0' }}</span>
+    <span class="apls-select-value-text" *ngSwitchCase="false" [ngSwitch]="!!customTrigger">
+      <span *ngSwitchDefault>
+        <ng-container *ngIf="!displayerTemplate;else displayerTemplateHolder">
+          {{ triggerValue }}
+        </ng-container>
+      </span>
+      <ng-content select="apls-select-trigger" *ngSwitchCase="true"></ng-content>
+    </span>
+  </div>
+
+  <div class="apls-select-arrow-wrapper"><div class="apls-select-arrow"></div></div>
+</div>
+
+<ng-template #displayerTemplateHolder [ngTemplateOutlet]="displayerTemplate" [ngTemplateOutletContext]="{$implicit: selected || ''}"></ng-template>
+
+<ng-template
+  cdk-connected-overlay
+  cdkConnectedOverlayLockPosition
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayScrollStrategy]="_scrollStrategy"
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayOpen]="panelOpen"
+  [cdkConnectedOverlayPositions]="_positions"
+  [cdkConnectedOverlayMinWidth]="_triggerRect?.width"
+  [cdkConnectedOverlayOffsetY]="_offsetY"
+  (backdropClick)="backdropClose()"
+  (attach)="_onAttached()"
+  (detach)="close()"
+>
+  <div
+    class="apls-select-body"
+    [class.apls-select-panel-done-animating]="_panelDoneAnimating"
+    [@transformPanel]="multiple ? 'showing-multiple' : 'showing'"
+    (@transformPanel.done)="_onPanelDone()"
+  >
+    <div class="apls-filter" *ngIf="!headerHidden">
+      <div class="actions">
+        <ng-container *ngIf="multiple">
+          <div #all="aplsTooltip" class="allbutton" (click)="checkAll()" [aplsTooltip]="listTooltip.all" aplsTooltipPosition="above">
+            <apls-pseudo-checkbox [state]="checkallStates"></apls-pseudo-checkbox>
+            <a class="count">{{ nRegistred }} / {{ nShowing }}</a>
+          </div>
+          <div #confirm="aplsTooltip" (click)="backdropClose()" [aplsTooltip]="listTooltip.confirm" aplsTooltipPosition="above">
+            <div class="apls-confirm"></div>
+          </div>
+        </ng-container>
+        <div #reset="aplsTooltip" (click)="btnReset()" [aplsTooltip]="listTooltip.reset" aplsTooltipPosition="above">
+          <div class="apls-reset"><i class="fas fa-broom"></i></div>
+        </div>
+        <div #close="aplsTooltip" [aplsTooltip]="listTooltip.close" aplsTooltipPosition="above">
+          <div (click)="btnClose()" class="apls-close"></div>
+        </div>
+      </div>
+      <div>
+        <ng-content select="input"></ng-content>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <div #panel class="apls-select-panel" [ngClass]="panelClass" (keydown)="_handleKeydown($event)">
+      <div class="apls-select-content" [@fadeInContent]="'showing'" (@fadeInContent.done)="_onFadeInDone()">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</ng-template>

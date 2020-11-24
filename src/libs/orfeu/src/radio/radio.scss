@@ -1,0 +1,95 @@
+@import "~@angular/cdk/_a11y";
+
+$apls-radio-size: 17px !default;
+$apls-toggle-padding: 8px !default;
+
+.apls-radio-input {
+  display: none;
+}
+
+.apls-radio-button {
+  display: inline-block;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.apls-radio-label {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.apls-radio-container {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  width: $apls-radio-size;
+  height: $apls-radio-size;
+  flex-shrink: 0;
+}
+
+.apls-radio-outer-circle {
+  box-sizing: border-box;
+  height: $apls-radio-size;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: border-color ease 280ms;
+  width: $apls-radio-size;
+  border: {
+    width: 2px;
+    style: solid;
+    radius: 50%;
+    color: gray;
+  }
+
+  ._apls-animation-noopable & {
+    transition: none;
+  }
+}
+
+.apls-radio-inner-circle {
+  border-radius: 50%;
+  box-sizing: border-box;
+  height: $apls-radio-size;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: transform ease 280ms, background-color ease 280ms;
+  width: $apls-radio-size;
+  transform: scale(0.001);
+
+  ._apls-animation-noopable & {
+    transition: none;
+  }
+
+  .apls-radio-checked & {
+    transform: scale(0.5);
+
+    @include cdk-high-contrast {
+      border: solid $apls-radio-size / 2;
+    }
+  }
+}
+
+.apls-radio-label-content {
+  display: inline-block;
+  order: 0;
+  line-height: inherit;
+  padding-left: $apls-toggle-padding;
+  padding-right: 0;
+
+  [dir="rtl"] & {
+    padding-right: $apls-toggle-padding;
+    padding-left: 0;
+  }
+}
+
+.apls-radio-disabled,
+.apls-radio-disabled .apls-radio-label {
+  cursor: default;
+}
+.apls-radio-button.apls-radio-button-label-expanded .apls-radio-label {
+  width: 100%;
+}

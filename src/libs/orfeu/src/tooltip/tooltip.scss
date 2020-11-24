@@ -1,0 +1,61 @@
+@import '../core/style/cdk';
+@import '~@angular/cdk/_a11y';
+
+$apls-tooltip-horizontal-padding: 8px;
+$apls-tooltip-max-width: 250px;
+$apls-tooltip-margin: 14px;
+
+$apls-tooltip-handset-horizontal-padding: 16px;
+$apls-tooltip-handset-margin: 24px;
+
+$apls-tooltip-target-height: 22px;
+$apls-tooltip-font-size: 14px;
+$apls-tooltip-vertical-padding: ($apls-tooltip-target-height - $apls-tooltip-font-size) / 2;
+
+$apls-tooltip-handset-target-height: 32px;
+$apls-tooltip-handset-font-size: 12px;
+$apls-tooltip-handset-vertical-padding: ($apls-tooltip-handset-target-height - $apls-tooltip-handset-font-size) / 2;
+
+.apls-tooltip {
+  font-size: $apls-tooltip-font-size;
+  padding-top: $apls-tooltip-vertical-padding;
+  padding-bottom: $apls-tooltip-vertical-padding;
+  background: rgb(122, 122, 122);
+}
+
+.apls-tooltip-handset {
+  font-size: $apls-tooltip-handset-font-size;
+  padding-top: $apls-tooltip-handset-vertical-padding;
+  padding-bottom: $apls-tooltip-handset-vertical-padding;
+}
+.apls-tooltip-panel {
+  pointer-events: none !important;
+}
+
+.apls-tooltip {
+  color: white;
+  border-radius: 2px;
+  margin: 0px $apls-tooltip-margin !important;
+  max-width: $apls-tooltip-max-width;
+  padding-left: $apls-tooltip-horizontal-padding;
+  padding-right: $apls-tooltip-horizontal-padding;
+
+  @include cdk-high-contrast {
+    outline: solid 1px;
+  }
+}
+
+.apls-tooltip-handset {
+  margin: $apls-tooltip-handset-margin;
+  padding-left: $apls-tooltip-handset-horizontal-padding;
+  padding-right: $apls-tooltip-handset-horizontal-padding;
+}
+
+.apls-tooltip-long {
+  white-space: pre !important;
+}
+
+.apls-tooltip-pre-line {
+  white-space: pre-line !important;
+  min-width: 200px;
+}

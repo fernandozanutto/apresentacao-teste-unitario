@@ -1,0 +1,112 @@
+@import "~@angular/cdk/_a11y";
+
+$apls-tab-bar-height: 40px !default;
+$apls-tab-animation-duration: 500ms !default;
+$ease-in-out-curve-function: cubic-bezier(0.35, 0, 0.25, 1) !default;
+$apls-xsmall: "max-width: 599px";
+$apls-small: "max-width: 959px";
+
+@mixin apls-fill {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+@mixin tab-icones-label {
+  height: $apls-tab-bar-height;
+  padding: 0 24px;
+  cursor: pointer;
+  box-sizing: border-box;
+  opacity: 0.6;
+  min-width: 160px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+
+  &:focus {
+    outline: none;
+
+    &:not(.apls-tab-icones-disabled) {
+      opacity: 1;
+    }
+  }
+
+  &.apls-tab-icones-disabled {
+    cursor: default;
+  }
+
+  .apls-tab-icones-label-content {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+  }
+}
+
+@mixin tab-label {
+  height: $apls-tab-bar-height;
+  padding: 0 24px;
+  cursor: pointer;
+  box-sizing: border-box;
+  opacity: 0.6;
+  min-width: 160px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+
+  &:focus {
+    outline: none;
+
+    &:not(.apls-tab-disabled) {
+      opacity: 1;
+    }
+  }
+
+  &.apls-tab-disabled {
+    cursor: default;
+  }
+
+  .apls-tab-label-content {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+  }
+}
+
+@mixin tab-header {
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+@mixin tab-icones-header {
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+@mixin ink-bar {
+  $height: 2px;
+
+  position: absolute;
+  bottom: 0;
+  height: $height;
+  transition: $apls-tab-animation-duration $ease-in-out-curve-function;
+
+  .apls-tab-group-inverted-header & {
+    bottom: auto;
+    top: 0;
+  }
+
+  @include cdk-high-contrast {
+    outline: solid $height;
+    height: 0;
+  }
+}

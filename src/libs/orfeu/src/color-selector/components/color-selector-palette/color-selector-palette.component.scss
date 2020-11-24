@@ -1,0 +1,45 @@
+:host {
+  position: absolute;
+
+  .apls-palette {
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 500;
+  }
+
+  .apls-color {
+    flex-grow: 0;
+    flex-shrink: 0;
+    border: 0px solid white;
+    transition: border-width 0.1s ease-in-out;
+
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box;
+
+    &:hover {
+      border: 3px solid white;
+    }
+  }
+
+  .apls-pos-tl {
+    transform: translateY(-100%) translateX(-100%);
+  }
+
+  .apls-pos-tr {
+    transform: translateY(-100%);
+  }
+
+  .apls-pos-bl {
+    transform: translateX(-100%);
+  }
+
+  .apls-pos-br {
+    // default
+  }
+
+  .apls-color-selected {
+    border: 1px solid white;
+  }
+}

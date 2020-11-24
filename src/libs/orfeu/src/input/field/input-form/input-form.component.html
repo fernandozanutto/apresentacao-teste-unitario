@@ -1,0 +1,7 @@
+<div class="input-group">
+    <ng-content></ng-content>
+</div>
+
+<div *ngIf="showLength" class="relative">
+    <span [@slideLength]="states" (@slideLength.done)="_onAnimationDone($event)" [style.right.px]="right" class="length">{{length}}/{{maxLength}}</span>
+</div>

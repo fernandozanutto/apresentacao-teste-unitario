@@ -1,0 +1,40 @@
+@mixin apls-truncate-line() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin apls-line-base($secondary-font-size) {
+  .apls-line {
+    @include apls-truncate-line();
+    display: block;
+    box-sizing: border-box;
+
+    &:nth-child(n+2) {
+      font-size: $secondary-font-size;
+    }
+  }
+}
+
+@mixin apls-normalize-text() {
+  & > * {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-size: inherit;
+  }
+}
+
+@mixin apls-line-wrapper-base() {
+  @include apls-normalize-text();
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  &:empty {
+    display: none;
+  }
+}

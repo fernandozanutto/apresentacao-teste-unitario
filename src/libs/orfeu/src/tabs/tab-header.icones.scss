@@ -1,0 +1,117 @@
+@import "~@angular/cdk/_a11y";
+@import "common";
+
+.apls-ink-bar {
+  @include cdk-high-contrast {
+    outline: solid 2px;
+    height: 0;
+  }
+}
+
+.apls-tab-icones-header {
+  display: flex;
+  margin-bottom: 18px;
+  @include tab-header;
+}
+
+@media ($apls-xsmall) {
+  .apls-tab-icones-label {
+    min-width: 72px;
+  }
+}
+
+.apls-tab-icones-header-pagination {
+  position: relative;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  min-width: 32px;
+  max-width: 40px;
+  cursor: pointer;
+  z-index: 2;
+
+  .apls-tab-icones-header-pagination-controls-enabled & {
+    display: flex;
+  }
+}
+
+.apls-tab-icones-header-pagination-before,
+.apls-tab-icones-header-rtl .apls-tab-icones-header-pagination-after {
+  padding-left: 4px;
+  .apls-tab-icones-header-pagination-chevron {
+    transform: rotate(-135deg);
+  }
+}
+
+.apls-tab-icones-header-rtl .apls-tab-icones-header-pagination-before,
+.apls-tab-icones-header-pagination-after {
+  padding-right: 4px;
+  .apls-tab-icones-header-pagination-chevron {
+    transform: rotate(45deg);
+  }
+}
+
+.apls-tab-icones-header-pagination-chevron {
+  border-style: solid;
+  border-width: 2px 2px 0 0;
+  content: "";
+  height: 8px;
+  width: 8px;
+}
+
+.apls-tab-icones-header-pagination-disabled {
+  box-shadow: none;
+  cursor: default;
+}
+
+.apls-tab-icones-label-container {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.apls-tab-icones-list {
+  flex-grow: 1;
+  position: relative;
+  transition: transform 500ms cubic-bezier(0.35, 0, 0.25, 1);
+}
+
+.apls-tab-icones-labels {
+  display: flex;
+}
+
+.apls-tab-icones-label {
+  height: 40px;
+  cursor: pointer;
+  box-sizing: border-box;
+  opacity: 1;
+  min-width: 80px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+  color: white;
+  border-right: 1px solid #8e8e8e;
+  font-size: 1.2rem;
+}
+
+.apls-tab-icones-label:focus {
+  outline: none;
+}
+
+.red-theme .apls-tab-icones-label,
+.red-theme .apls-tab-icones-link:active {
+  color: black;
+}
+
+.red-theme .apls-tab-icones-label,
+.red-theme .apls-tab-icones-link {
+  color: white;
+}
+
+.apls-tab-icones-label:focus:not(.apls-tab-icones-disabled) {
+  background-color: white;
+}

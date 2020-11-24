@@ -1,0 +1,24 @@
+<div class="apls-calendar-header">
+  <div class="apls-calendar-controls">
+    <button apls-button type="button" class="apls-calendar-period-button"
+            (click)="currentPeriodClicked()" [attr.aria-label]="periodButtonLabel">
+      {{periodButtonText}}
+      <div class="apls-calendar-arrow" [class.apls-calendar-invert]="calendar.currentView != 'month'"></div>
+    </button>
+
+    <div class="apls-calendar-spacer"></div>
+
+    <button type="button" class="apls-calendar-previous-button"
+            [disabled]="!previousEnabled()" (click)="previousClicked()"
+            [attr.aria-label]="prevButtonLabel">
+    </button>
+
+    <button type="button" class="apls-calendar-next-button"
+            [disabled]="!nextEnabled()" (click)="nextClicked()"
+            [attr.aria-label]="nextButtonLabel">
+    </button>
+    <div>
+      <div class="apls-reset mt-1 mr-1" (click)="reset()"><i class="fas fa-broom"></i></div>
+    </div>
+  </div>
+</div>

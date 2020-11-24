@@ -1,0 +1,33 @@
+@import "components/alert";
+@import "components/button";
+@import "components/components";
+@import "components/checkbox";
+@import "components/modal";
+@import "components/progress-bar";
+@import "components/progress-spinner";
+@import "components/pseudo-checkbox";
+@import "components/radio";
+@import "components/tabs";
+
+@mixin theme-create($color, $disable) {
+
+  @include alert($color);
+  @include button($color);
+  @include components($color);
+  @include checkbox($color, $disable);
+  @include modal($color, $disable);
+  @include progress-bar(#c24b4b);
+  @include progress-spinner($color);
+  @include pseudo-checkbox($color);
+  @include radio($color, $disable);
+  @include tabs($color, $disable);
+
+}
+
+.red-theme {
+  @include theme-create(#8a2f2f, gray);
+}
+
+.blue-theme {
+  @include theme-create(#2a5c88, gray);
+}

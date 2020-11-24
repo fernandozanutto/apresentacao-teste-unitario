@@ -1,0 +1,81 @@
+@import './typography';
+@import '../../autocomplete/autocomplete-theme';
+@import '../../badge/badge-theme';
+@import '../../bottom-sheet/bottom-sheet-theme';
+@import '../../button/button-theme';
+@import '../../button-toggle/button-toggle-theme';
+@import '../../card/card-theme';
+@import '../../checkbox/checkbox-theme';
+@import '../../chips/chips-theme';
+@import '../../table/table-theme';
+@import '../../datepicker/datepicker-theme';
+@import '../../dialog/dialog-theme';
+@import '../../expansion/expansion-theme';
+@import '../../grid-list/grid-list-theme';
+@import '../../icon/icon-theme';
+@import '../../input/input-theme';
+@import '../../list/list-theme';
+@import '../../menu/menu-theme';
+@import '../../paginator/paginator-theme';
+@import '../../progress-bar/progress-bar-theme';
+@import '../../progress-spinner/progress-spinner-theme';
+@import '../../radio/radio-theme';
+@import '../../select/select-theme';
+@import '../../sidenav/sidenav-theme';
+@import '../../slide-toggle/slide-toggle-theme';
+@import '../../slider/slider-theme';
+@import '../../stepper/stepper-theme';
+@import '../../sort/sort-theme';
+@import '../../tabs/tabs-theme';
+@import '../../toolbar/toolbar-theme';
+@import '../../tooltip/tooltip-theme';
+@import '../../snack-bar/snack-bar-theme';
+@import '../option/option-theme';
+@import '../option/optgroup-theme';
+@import '../../form-field/form-field-theme';
+@import '../../tree/tree-theme';
+
+
+// Includes all of the typographic styles.
+@mixin angular-material-typography($config: null) {
+  @if $config == null {
+    $config: apls-typography-config();
+  }
+
+  @include apls-badge-typography($config);
+  @include apls-base-typography($config);
+  @include apls-autocomplete-typography($config);
+  @include apls-bottom-sheet-typography($config);
+  @include apls-button-typography($config);
+  @include apls-button-toggle-typography($config);
+  @include apls-card-typography($config);
+  @include apls-checkbox-typography($config);
+  @include apls-chips-typography($config);
+  @include apls-table-typography($config);
+  @include apls-datepicker-typography($config);
+  @include apls-dialog-typography($config);
+  @include apls-expansion-panel-typography($config);
+  @include apls-form-field-typography($config);
+  @include apls-grid-list-typography($config);
+  @include apls-icon-typography($config);
+  @include apls-input-typography($config);
+  @include apls-menu-typography($config);
+  @include apls-paginator-typography($config);
+  @include apls-progress-bar-typography($config);
+  @include apls-progress-spinner-typography($config);
+  @include apls-radio-typography($config);
+  @include apls-select-typography($config);
+  @include apls-sidenav-typography($config);
+  @include apls-slide-toggle-typography($config);
+  @include apls-slider-typography($config);
+  @include apls-stepper-typography($config);
+  @include apls-sort-typography($config);
+  @include apls-tabs-typography($config);
+  @include apls-toolbar-typography($config);
+  @include apls-tooltip-typography($config);
+  @include apls-list-typography($config);
+  @include apls-option-typography($config);
+  @include apls-optgroup-typography($config);
+  @include apls-snack-bar-typography($config);
+  @include apls-tree-typography($config);
+}

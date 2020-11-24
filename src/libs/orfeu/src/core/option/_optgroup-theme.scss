@@ -1,0 +1,21 @@
+@import '../theming/palette';
+@import '../theming/theming';
+@import '../typography/typography-utils';
+
+@mixin apls-optgroup-theme($theme) {
+  $foreground: map-get($theme, foreground);
+
+  .apls-optgroup-label {
+    color: apls-color($foreground, secondary-text);
+  }
+
+  .apls-optgroup-disabled .apls-optgroup-label {
+    color: apls-color($foreground, hint-text);
+  }
+}
+
+@mixin apls-optgroup-typography($config) {
+  .apls-optgroup-label {
+    @include apls-typography-level-to-styles($config, body-2);
+  }
+}

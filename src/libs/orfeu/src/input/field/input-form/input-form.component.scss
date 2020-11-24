@@ -1,0 +1,20 @@
+.length {
+  position: absolute;
+  z-index: 999;
+  font-size: 12px;
+  bottom: 0px;
+  padding: 0px 6px;
+  color: #76797d;
+  background: rgba(255, 255, 255, 1);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgb(253, 253, 253) 30%,
+    rgb(253, 253, 253) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.relative {
+  position: relative;
+}

@@ -1,0 +1,220 @@
+@import '../core/style/variables';
+@import '../core/style/vendor-prefixes';
+@import '../core/style/noop-animation';
+
+$apls-progress-bar-height: 5px !default;
+$apls-progress-bar-full-animation-duration: 2000ms !default;
+$apls-progress-bar-piece-animation-duration: 250ms !default;
+
+
+.apls-progress-bar {
+  @include _noop-animation();
+  display: block;
+  height: $apls-progress-bar-height;
+  overflow: hidden;
+  position: relative;
+  transition: opacity $apls-progress-bar-piece-animation-duration linear;
+  width: 100%;
+
+  .apls-progress-bar-element, .apls-progress-bar-fill::after {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+
+  .apls-progress-bar-background {
+    width: calc(100% + 10px);
+  }
+
+  .apls-progress-bar-buffer {
+    @include _noop-animation();
+    transform-origin: top left;
+    transition: transform $apls-progress-bar-piece-animation-duration ease;
+  }
+
+  .apls-progress-bar-secondary {
+    display: none;
+  }
+
+  .apls-progress-bar-fill {
+    @include _noop-animation();
+    animation: none;
+    transform-origin: top left;
+    transition: transform $apls-progress-bar-piece-animation-duration ease;
+  }
+
+  .apls-progress-bar-fill::after {
+    @include _noop-animation();
+    animation: none;
+    content: '';
+    display: inline-block;
+    left: 0;
+  }
+
+  &[dir='rtl'],
+  [dir='rtl'] & {
+    transform: rotateY(180deg);
+  }
+
+  &[mode='query'] {
+    transform: rotateZ(180deg);
+
+    &[dir='rtl'],
+    [dir='rtl'] & {
+      transform: rotateZ(180deg) rotateY(180deg);
+    }
+  }
+
+  &[mode='indeterminate'],
+  &[mode='query'] {
+    .apls-progress-bar-fill {
+      @include _noop-animation();
+      transition: none;
+    }
+    .apls-progress-bar-primary {
+      @include _noop-animation();
+      @include backface-visibility(hidden);
+      animation: apls-progress-bar-primary-indeterminate-translate
+          $apls-progress-bar-full-animation-duration infinite linear;
+      left: -145.166611%;
+    }
+    .apls-progress-bar-primary.apls-progress-bar-fill::after {
+      @include _noop-animation();
+      @include backface-visibility(hidden);
+      animation: apls-progress-bar-primary-indeterminate-scale
+          $apls-progress-bar-full-animation-duration infinite linear;
+    }
+    .apls-progress-bar-secondary {
+      @include _noop-animation();
+      @include backface-visibility(hidden);
+      animation: apls-progress-bar-secondary-indeterminate-translate
+          $apls-progress-bar-full-animation-duration infinite linear;
+      left: -54.888891%;
+      display: block;
+    }
+    .apls-progress-bar-secondary.apls-progress-bar-fill::after {
+      @include _noop-animation();
+      @include backface-visibility(hidden);
+      animation: apls-progress-bar-secondary-indeterminate-scale
+          $apls-progress-bar-full-animation-duration infinite linear;
+    }
+  }
+
+  &[mode='buffer'] {
+    .apls-progress-bar-background {
+      @include _noop-animation();
+      @include backface-visibility(hidden);
+      animation: apls-progress-bar-background-scroll
+          $apls-progress-bar-piece-animation-duration infinite linear;
+    }
+  }
+}
+
+
+//
+
+//
+
+
+$apls-progress-bar-primary-indeterminate-translate-step-2:
+    cubic-bezier(0.5, 0, 0.701732, 0.495819) !default;
+$apls-progress-bar-primary-indeterminate-translate-step-3:
+    cubic-bezier(0.302435, 0.381352, 0.55, 0.956352) !default;
+
+$apls-progress-bar-primary-indeterminate-scale-step-2:
+    cubic-bezier(0.334731, 0.12482, 0.785844, 1) !default;
+$apls-progress-bar-primary-indeterminate-scale-step-3:
+    cubic-bezier(0.06, 0.11, 0.6, 1) !default;
+
+$apls-progress-bar-secondary-indeterminate-translate-step-1:
+    cubic-bezier(0.15, 0, 0.515058, 0.409685) !default;
+$apls-progress-bar-secondary-indeterminate-translate-step-2:
+    cubic-bezier(0.31033, 0.284058, 0.8, 0.733712) !default;
+$apls-progress-bar-secondary-indeterminate-translate-step-3:
+    cubic-bezier(0.4, 0.627035, 0.6, 0.902026) !default;
+
+$apls-progress-bar-secondary-indeterminate-scale-step-1:
+    cubic-bezier(0.15, 0, 0.515058, 0.409685) !default;
+$apls-progress-bar-secondary-indeterminate-scale-step-2:
+    cubic-bezier(0.31033, 0.284058, 0.8, 0.733712) !default;
+$apls-progress-bar-secondary-indeterminate-scale-step-3:
+    cubic-bezier(0.4, 0.627035, 0.6, 0.902026) !default;
+
+
+
+@keyframes apls-progress-bar-primary-indeterminate-translate {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    animation-timing-function: $apls-progress-bar-primary-indeterminate-translate-step-2;
+    transform: translateX(0);
+  }
+  59.15% {
+    animation-timing-function: $apls-progress-bar-primary-indeterminate-translate-step-3;
+    transform: translateX(83.67142%);
+  }
+  100% {
+    transform: translateX(200.611057%);
+  }
+}
+
+@keyframes apls-progress-bar-primary-indeterminate-scale {
+  0% {
+    transform: scaleX(0.08);
+  }
+  36.65% {
+    animation-timing-function: $apls-progress-bar-primary-indeterminate-scale-step-2;
+    transform: scaleX(0.08);
+  }
+  69.15% {
+    animation-timing-function: $apls-progress-bar-primary-indeterminate-scale-step-3;
+    transform: scaleX(0.661479);
+  }
+  100% {
+    transform: scaleX(0.08);
+  }
+}
+
+@keyframes apls-progress-bar-secondary-indeterminate-translate {
+  0% {
+    animation-timing-function: $apls-progress-bar-secondary-indeterminate-translate-step-1;
+    transform: translateX(0);
+  }
+  25% {
+    animation-timing-function: $apls-progress-bar-secondary-indeterminate-translate-step-2;
+
+    transform: translateX(37.651913%);
+  }
+  48.35% {
+    animation-timing-function: $apls-progress-bar-secondary-indeterminate-translate-step-3;
+    transform: translateX(84.386165%);
+  }
+  100% {
+    transform: translateX(160.277782%);
+  }
+}
+
+@keyframes apls-progress-bar-secondary-indeterminate-scale {
+  0% {
+    animation-timing-function: $apls-progress-bar-secondary-indeterminate-scale-step-1;
+    transform: scaleX(0.08);
+  }
+  19.15% {
+    animation-timing-function: $apls-progress-bar-secondary-indeterminate-scale-step-2;
+    transform: scaleX(0.457104);
+  }
+  44.15% {
+    animation-timing-function: $apls-progress-bar-secondary-indeterminate-scale-step-3;
+    transform: scaleX(0.72796);
+  }
+  100% {
+    transform: scaleX(0.08);
+  }
+}
+
+@keyframes apls-progress-bar-background-scroll {
+  to {
+    transform: translateX(-10px);
+  }
+}

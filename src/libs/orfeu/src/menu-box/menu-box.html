@@ -1,0 +1,14 @@
+<div class="container over-auto">
+  <div class="row center-align" [ngStyle]="{'width': parentContainerSizeVal}">
+    <div class="col-{{ menuColumns }} mb-3" *ngFor="let item of menuArray" (click)="btnNavegarRota(item)">
+      <div [ngClass]="item.permissao ? 'card shadow-menu fadein menu-habilitado' : 'menu-desabilitado'">
+        <div class="card-body">
+          <span class="lock-menu dot"><i class="fas fa-lock"></i></span>
+          <i class="{{ item.icon }} fonte-cor-padrao menu-titulo-size card-title"></i>
+          <h6 class="card-title mt-3 fonte-cor-padrao">{{ item.descricao }}</h6>
+        </div>
+        <apls-progress-bar *ngIf="item.clicked" mode="indeterminate" class="menu-box-progress-bar"></apls-progress-bar>
+      </div>
+    </div>
+  </div>
+</div>

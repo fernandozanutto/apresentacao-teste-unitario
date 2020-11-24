@@ -1,0 +1,8 @@
+@mixin progress-spinner($color) {
+
+  .apls-progress-spinner, .apls-spinner {
+    circle {
+      stroke: #FFFFFF;
+    }
+  }
+}

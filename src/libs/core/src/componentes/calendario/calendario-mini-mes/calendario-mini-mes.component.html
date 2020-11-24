@@ -1,0 +1,21 @@
+<div class="calendario-mini-mes-container">
+  <div *ngIf="mostrarDescricaoMes" class="descricao-mes">
+    <span style="text-transform: capitalize">
+      {{ mes | date: 'MMMM' }}
+    </span>
+    <span>
+      {{ mes | date: " 'de' yyyy" }}
+    </span>
+  </div>
+  <div class="container-cabecalho-dias-da-semana">
+    <div *ngFor="let diaDaSemana of DIAS_DA_SEMANA">
+      <span>
+        {{ diaDaSemana }}
+      </span>
+    </div>
+  </div>
+
+  <div class="semana" *ngFor="let semana of semanas; let index = index">
+    <apls-calendario-mini-mes-dia *ngFor="let dia of semana" [diaDoMes]="dia" [mesCorrente]="mes"></apls-calendario-mini-mes-dia>
+  </div>
+</div>

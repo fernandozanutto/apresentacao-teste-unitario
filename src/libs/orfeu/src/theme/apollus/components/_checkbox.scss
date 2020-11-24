@@ -1,0 +1,44 @@
+
+@mixin checkbox($color, $disable) {
+
+  .apls-checkbox-frame {
+    border-color: #ababab;
+  }
+
+  .apls-checkbox-checkmark {
+    fill: white;
+  }
+
+  .apls-checkbox-checkmark-path {
+    stroke: white !important;
+  }
+
+  .apls-checkbox-mixedmark {
+    background-color: $color;
+  }
+
+  .apls-checkbox-indeterminate, .apls-checkbox-checked {
+    .apls-checkbox-background {
+      background-color: $color;
+    }
+  }
+
+  .apls-checkbox-disabled {
+    &.apls-checkbox-checked, &.apls-checkbox-indeterminate {
+      .apls-checkbox-background {
+        background-color: $disable;
+      }
+    }
+
+    &:not(.apls-checkbox-checked) {
+      .apls-checkbox-frame {
+        border-color: $disable;
+      }
+    }
+
+    .apls-checkbox-label {
+      color: $disable;
+    }
+  }
+  
+}

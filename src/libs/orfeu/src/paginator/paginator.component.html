@@ -1,0 +1,40 @@
+<div class="paginator" [ngClass]="{ reduzido: reduzido }" *ngIf="registro.totalPaginas > 0">
+  <!-- Botão de voltar -->
+  <button class="btn-arrow" [disabled]="registro.pagina <= 1" (click)="btnBack()">
+    <i class="fas fa-angle-left"></i>
+  </button>
+
+  <!-- Label com o numero de pagina e a pagina atual -->
+  <div class="col-label">
+    <p class="lb-paginador">{{ registro.pagina }} / {{ calculaPaginador() }}</p>
+  </div>
+
+  <!-- Botão de avançar pagina -->
+  <button class="btn-arrow" [disabled]="registro.pagina >= lastpage" (click)="btnNext()">
+    <i class="fas fa-angle-right"></i>
+  </button>
+  <!-- Selecionar itens por pagina -->
+  <apls-select [headerHidden]="true" class="itensPorPagina" [formControl]="itensPorPagina">
+    <apls-option [value]="10">
+      10
+    </apls-option>
+    <apls-option [value]="20">
+      20
+    </apls-option>
+    <apls-option [value]="30">
+      30
+    </apls-option>
+    <apls-option [value]="40">
+      40
+    </apls-option>
+    <apls-option [value]="50">
+      50
+    </apls-option>
+  </apls-select>
+</div>
+
+<!-- <div class="mostrador-contaniner">
+    <div class="mostrador-content">
+      <p class="text-itens">{{ registro.totalPaginas }} <small>itens</small></p>
+    </div>
+  </div> -->

@@ -1,0 +1,64 @@
+@import '../core/style/cdk';
+@import '../core/style/elevation';
+@import '../core/style/vendor-prefixes';
+@import '~@angular/cdk/_a11y';
+
+$apls-dialog-padding: 0px !default;
+$apls-dialog-border-radius: 2px !default;
+$apls-dialog-max-height: 65vh !default;
+$apls-dialog-button-margin: 8px !default;
+
+.apls-dialog-container {
+  @include apls-elevation(24);
+
+  display: block;
+  padding: $apls-dialog-padding;
+  border-radius: $apls-dialog-border-radius;
+  box-sizing: border-box;
+  overflow: auto;
+  outline: 0;
+  background-color: white;
+
+  width: 100%;
+  height: 100%;
+
+  min-height: inherit;
+  max-height: inherit;
+
+  @include cdk-high-contrast {
+    outline: solid 1px;
+  }
+}
+
+.apls-dialog-content {
+  display: block;
+  padding: 16px;
+  max-height: $apls-dialog-max-height;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.apls-dialog-title {
+  margin: 0;
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 10px 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.apls-dialog-actions {
+  background-color: #f7f3f3;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 8px;
+  text-align: right;
+  width: 100%;
+  & > * {
+    margin: 0px 2.5px;
+    padding: 5px 10px;
+  }
+}

@@ -1,0 +1,100 @@
+$apls-sort-header-arrow-margin: 6px;
+$apls-sort-header-arrow-container-size: 12px;
+$apls-sort-header-arrow-stem-size: 10px;
+$apls-sort-header-arrow-pointer-length: 6px;
+$apls-sort-header-arrow-thickness: 2px;
+$apls-sort-header-arrow-hint-opacity: 0.38;
+
+.apls-sort-header-container {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+
+  .apls-sort-header-disabled & {
+    cursor: default;
+  }
+}
+
+.apls-sort-header-position-before {
+  flex-direction: row-reverse;
+}
+
+.apls-sort-header-button {
+  border: none;
+  background: 0 0;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  cursor: inherit;
+  font: inherit;
+  color: currentColor;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+.apls-sort-header-arrow {
+  height: $apls-sort-header-arrow-container-size;
+  width: $apls-sort-header-arrow-container-size;
+  min-width: $apls-sort-header-arrow-container-size;
+  position: relative;
+  display: flex;
+  margin-left: 4px;
+
+  // &,
+  // [dir='rtl'] .apls-sort-header-position-before & {
+  //   margin: 0 0 0 $apls-sort-header-arrow-margin;
+  // }
+
+  // .apls-sort-header-position-before &,
+  // [dir='rtl'] & {
+  //   margin: 0 $apls-sort-header-arrow-margin 0 0;
+  // }
+}
+
+.apls-sort-header-stem {
+  background: currentColor;
+  height: $apls-sort-header-arrow-stem-size;
+  width: $apls-sort-header-arrow-thickness;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.apls-sort-header-indicator {
+  width: 100%;
+  height: $apls-sort-header-arrow-thickness;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.apls-sort-header-pointer-middle {
+  margin: auto;
+  height: $apls-sort-header-arrow-thickness;
+  width: $apls-sort-header-arrow-thickness;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.apls-sort-header-pointer-left,
+.apls-sort-header-pointer-right {
+  background: currentColor;
+  width: $apls-sort-header-arrow-pointer-length;
+  height: $apls-sort-header-arrow-thickness;
+  position: absolute;
+  top: 0;
+}
+
+.apls-sort-header-pointer-left {
+  transform-origin: right;
+  left: 0;
+}
+
+.apls-sort-header-pointer-right {
+  transform-origin: left;
+  right: 0;
+}

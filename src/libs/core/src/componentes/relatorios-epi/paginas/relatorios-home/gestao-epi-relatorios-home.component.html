@@ -1,0 +1,26 @@
+<apls-section>
+  <div class="row ml-0 mt-2">
+    <div class="col-lg-3 col-xl-2 menu-shadow">
+      <button type="button" (click)="navegarRota(item)" class="btn {{ item.class }} btn-block btn-lg margin-btn-menu text-left" *ngFor="let item of menuArray">
+        <i class="{{ item.icone }} icon-color mr-2"></i> {{ item.descricao }}
+      </button>
+    </div>
+    <div class="col-lg-9 col-xl-10">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</apls-section>
+<footer>
+  <div class="footer-left" [hidden]="exibirBotaoMenuPortal">
+    <div class="footer-info"><button aplsButton routerLink="/so/gestaoepi" color="light">{{ 'label.menu_gestao_epi' | translate }}</button></div>
+  </div>
+  <div class="footer-left" [hidden]="!exibirBotaoMenuPortal">
+    <div class="footer-info"><button aplsButton routerLink="/menu" color="light">{{ 'label.menu_gestao_epi' | translate }}</button></div>
+  </div>
+
+  <div class="footer-center"></div>
+
+  <div class="footer-rigth">
+    <button aplsButton color="primary" (click)="btnGerarRelatorio()">{{ 'label.gerar_relatorio' | translate }}</button>
+  </div>
+</footer>

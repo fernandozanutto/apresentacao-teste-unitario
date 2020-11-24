@@ -1,0 +1,43 @@
+@mixin components($theme-color) {
+  .apls-calendar-body-selected {
+    background-color: $theme-color;
+  }
+
+  .icon-popup i {
+    color: $theme-color;
+    // color: #ffb100;
+  }
+
+  .apls-reset,
+  .apls-confirm,
+  .apls-close {
+    background-color: $theme-color;
+    border-color: $theme-color;
+  }
+
+  .preloader {
+    border: 5px solid;
+    border-color: transparentize($color: $theme-color, $amount: 0.6);
+    border-top: 5px solid $theme-color;
+  }
+
+  .apls-checkbox-focus {
+    .apls-checkbox-frame {
+      box-shadow: 0px 0px 5px 1px transparentize($color: $theme-color, $amount: 0.58);
+      border-color: $theme-color;
+    }
+  }
+
+  .sub-header {
+    &:before {
+      background-color: $theme-color;
+    }
+  }
+
+  .fonte-cor-padrao {
+    color: $theme-color;
+    &:before {
+      color: $theme-color;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<div class="apls-tab-header-pagination apls-tab-header-pagination-before"
+     aria-hidden="true"
+     [class.apls-tab-header-pagination-disabled]="_disableScrollBefore"
+     (click)="_scrollHeader('before')">
+  <div class="apls-tab-header-pagination-chevron"></div>
+</div>
+
+<div class="apls-tab-label-container" #tabListContainer
+     (keydown)="_handleKeydown($event)">
+  <div class="apls-tab-list" #tabList role="tablist" (cdkObserveContent)="_onContentChanges()">
+    <div class="apls-tab-labels">
+      <ng-content></ng-content>
+    </div>
+    <apls-ink-bar></apls-ink-bar>
+  </div>
+</div>
+
+<div class="apls-tab-header-pagination apls-tab-header-pagination-after"
+     aria-hidden="true"
+     [class.apls-tab-header-pagination-disabled]="_disableScrollAfter"
+     (click)="_scrollHeader('after')">
+  <div class="apls-tab-header-pagination-chevron"></div>
+</div>

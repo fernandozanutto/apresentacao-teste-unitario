@@ -1,0 +1,57 @@
+@import '../../style/checkbox-common';
+
+$apls-checkbox-size: 20px;
+
+$_apls-pseudo-checkbox-padding: $apls-checkbox-border-width * 2;
+
+$_apls-pseudo-checkmark-size: $apls-checkbox-size - (2 * $_apls-pseudo-checkbox-padding);
+
+.apls-pseudo-checkbox {
+  width: $apls-checkbox-size;
+  height: $apls-checkbox-size;
+  border: $apls-checkbox-border-width solid;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  position: relative;
+  flex-shrink: 0;
+  transition:
+      border-color $apls-checkbox-transition-duration $apls-linear-out-slow-in-timing-function,
+      background-color $apls-checkbox-transition-duration $apls-linear-out-slow-in-timing-function;
+
+  &::after {
+    position: absolute;
+    opacity: 0;
+    content: '';
+    border-bottom: $apls-checkbox-border-width solid currentColor;
+    transition: opacity $apls-checkbox-transition-duration $apls-linear-out-slow-in-timing-function;
+  }
+
+  &.apls-pseudo-checkbox-checked, &.apls-pseudo-checkbox-indeterminate {
+    border: none;
+  }
+}
+
+.apls-pseudo-checkbox-disabled {
+  cursor: not-allowed;
+  color: #8080809e !important;
+}
+
+.apls-pseudo-checkbox-indeterminate::after {
+  top: ($apls-checkbox-size - $apls-checkbox-border-width) / 2;
+  left: 1.5px;
+  width: $apls-checkbox-size - ($apls-checkbox-border-width * 2);
+  opacity: 1;
+}
+
+.apls-pseudo-checkbox-checked::after {
+  top: ($apls-checkbox-size / 2) - ($_apls-pseudo-checkmark-size / 4);
+  left: $_apls-pseudo-checkbox-padding - $apls-checkbox-border-width / 2;
+  width: $_apls-pseudo-checkmark-size;
+  height: ($_apls-pseudo-checkmark-size - $apls-checkbox-border-width) / 2;
+  border-left: $apls-checkbox-border-width solid currentColor;
+  transform: rotate(-45deg);
+  opacity: 1;
+}

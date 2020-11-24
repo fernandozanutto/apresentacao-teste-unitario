@@ -1,0 +1,185 @@
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col-md-12">
+      <apls-campo-areas
+        [formControlArea1]="form.get('area1')"
+        (changeArea1)="changeArea1($event)"
+        [area1Multiple]="true"
+        [formControlArea2]="form.get('area2')"
+        (changeArea1)="changeArea2($event)"
+        [formControlArea3]="form.get('area3')"
+        [somenteAtivos]="false"
+      >
+      </apls-campo-areas>
+    </div>
+
+    <div class="col-5">
+      <apls-input-group label="{{ 'label.funcionario' | translate }}">
+        <apls-campo-matricula-funcionario
+          [formControlFuncionario]="form.get('funcionario')"
+          [area1]="form.get('area1').value"
+          [area2]="form.get('area2').value"
+          [area3]="form.get('area3').value"
+          [exibirCampoMatricula]="false"
+          [somenteAtivos]="false"
+          [mostrarUsuarioLogado]="false"
+        >
+        </apls-campo-matricula-funcionario>
+      </apls-input-group>
+    </div>
+
+    <div class="col-2">
+      <apls-input-group label="{{ 'label.status' | translate }}">
+        <apls-select formControlName="status" placeholder="" multiple>
+          <apls-option value="A">{{ 'label.status_ativo' | translate }}</apls-option>
+          <apls-option value="I">{{ 'label.status_inativo' | translate }}</apls-option>
+          <apls-option value="C">{{ 'label.status_c' | translate }}</apls-option>
+        </apls-select>
+      </apls-input-group>
+    </div>
+
+    <div class="col-5">
+      <apls-input-group label="{{ 'label.lider' | translate }}">
+        <apls-select
+          placeholder="{{ 'tooltip.digite_nome_matricula' | translate }}"
+          formControlName="lider"
+          [compareWith]="compararPorID"
+          [filterCompareWith]="filtrarPorDescricao"
+        >
+          <input aplsInput [formControl]="iLider" placeholder="{{ 'tooltip.digite_3_nome_matricula' | translate }}" />
+          <apls-preloader *ngIf="!!lider$ && !(lider$ | async)"></apls-preloader>
+          <div class="select-nulo text-center" *ngIf="(lider$ | async)?.length === 0">{{ 'mensagem.nenhum_registro_encontrado' | translate }}</div>
+
+          <apls-option *ngFor="let item of lider$ | async" [value]="item" [attr.chave]="item.id">
+            {{ !!item.matriculaManual ? item.matriculaManual + ' - ' : '' }}
+            {{ item.nome }}
+            {{ item.status && item.status !== 'A' ? '(' + translate.instant('label.status_' + item.status.toLowerCase()) + ')' : '' }}
+          </apls-option>
+        </apls-select>
+      </apls-input-group>
+    </div>
+
+    <div class="col-6">
+      <apls-input-group label="{{ 'label.ghe' | translate }}">
+        <apls-select
+          formControlName="ghe"
+          placeholder="{{ 'label.catalogo' | translate }}"
+          [compareWith]="compararPorID"
+          [filterCompareWith]="filtrarPorDescricao"
+          multiple
+        >
+          <input aplsInput />
+          <apls-option *ngFor="let item of listaGhePorUnidade" [value]="item">{{ item.codigo }} - {{ item.descricao }}</apls-option>
+        </apls-select>
+      </apls-input-group>
+    </div>
+
+    <div class="col-6">
+      <apls-input-group label="{{ 'label.atividade_critica' | translate }}">
+        <apls-select
+          formControlName="atividadeCritica"
+          placeholder="{{ 'label.catalogo' | translate }}"
+          [compareWith]="compararPorID"
+          [filterCompareWith]="filtrarPorDescricao"
+          multiple
+        >
+          <input aplsInput />
+          <apls-option *ngFor="let item of listaAtividadesCriticas" [value]="item">{{ item.descricao }}</apls-option>
+        </apls-select>
+      </apls-input-group>
+    </div>
+
+    <div class="col-4">
+      <apls-familia-select [familiaFormControl]="form.get('familia')" [status]="[statusEnum.ATIVO, statusEnum.INATIVO]"></apls-familia-select>
+    </div>
+
+    <div class="col-6">
+      <apls-epi-select [epiFormControl]="form.get('epi')" [listaFamilia]="familiasSelecionadas"></apls-epi-select>
+    </div>
+
+    <div class="col-md-2">
+      <apls-input-group label="{{ 'label.ca' | translate }}">
+        <input aplsInput InputNumerico formControlName="ca" type="text" maxlength="8" />
+      </apls-input-group>
+    </div>
+
+    <div class="col-6">
+      <apls-estado-entrega-epi-item-select [estadoEntregaEpiItemFormControl]="form.get('situacao')"> </apls-estado-entrega-epi-item-select>
+    </div>
+
+    <div class="col-6">
+      <apls-confirmacao-assinatura-select [confirmacaoAssinaturaFormControl]="form.get('registroEntrega')"> </apls-confirmacao-assinatura-select>
+    </div>
+
+    <div class="col-6">
+      <apls-input-group label="{{ 'label.ponto_distribuicao' | translate }}">
+        <apls-select
+          formControlName="pontoDistribuicao"
+          placeholder="{{ 'label.catalogo' | translate }}"
+          [compareWith]="compararPorID"
+          [filterCompareWith]="filtrarPorDescricao"
+          multiple
+        >
+          <input aplsInput />
+          <apls-option *ngFor="let item of listaPontoDistribuicao" [value]="item">{{ item.descricao }}</apls-option>
+        </apls-select>
+      </apls-input-group>
+    </div>
+
+    <div class="col-6">
+      <apls-input-group label="{{ 'label.distribuidor' | translate }}">
+        <apls-select
+          formControlName="distribuidor"
+          placeholder="{{ 'label.catalogo' | translate }}"
+          [compareWith]="compararPorID"
+          [filterCompareWith]="filtrarPorDescricao"
+          multiple
+        >
+          <input aplsInput />
+          <apls-option *ngFor="let item of listaDistribuidores" [value]="item">{{ item.nome }}</apls-option>
+        </apls-select>
+      </apls-input-group>
+    </div>
+
+    <div class="col-6">
+      <apls-data-inicio-fim
+        lbDataInicio="{{ 'label.periodo_entrega_inicio' | translate }}"
+        [dataInicioFormControl]="form.get('periodoEntregaInicio')"
+        lbDataFim="{{ 'label.periodo_entrega_fim' | translate }}"
+        [dataFimFormControl]="form.get('periodoEntregaFim')"
+      ></apls-data-inicio-fim>
+    </div>
+
+    <div class="col-6">
+      <apls-data-inicio-fim
+        lbDataInicio="{{ 'label.vencimento_data_inicio' | translate }}"
+        [dataInicioFormControl]="form.get('vencimentoInicio')"
+        lbDataFim="{{ 'label.vencimento_data_fim' | translate }}"
+        [dataFimFormControl]="form.get('vencimentoFim')"
+      ></apls-data-inicio-fim>
+    </div>
+
+    <div class="col-9" style="display: inline-flex">
+      <apls-input-group label="{{ 'label.tipo' | translate }}" style="width: 40%">
+        <apls-select [formControl]="tipoJustificativa" placeholder="{{ 'label.selecione' | translate }}" (selectionChange)="tratarValorComboJustificativa($event)">
+          <apls-option value="confirmacaoEntrega">{{ 'label.confirmacao_entrega' | translate }}</apls-option>
+          <apls-option value="epiExcecao">{{ 'label.epi_em_excecao' | translate }}</apls-option>
+        </apls-select>
+      </apls-input-group>
+      <apls-input-group label="{{ 'label.justificativa' | translate }}" style="width: 60%; margin-left: 7px">
+        <apls-select
+          formControlName="justificativa"
+          placeholder="{{ 'tooltip.digite_codigo_descricao' | translate }}"
+          [compareWith]="compararPorID"
+          [filterCompareWith]="filtrarPorDescricao"
+        >
+          <input aplsInput />
+          <apls-option *ngFor="let item of listaJustificativa" [value]="item">{{ item.descricao }}</apls-option>
+        </apls-select>
+      </apls-input-group>
+    </div>
+    <div class="col-3 pt-3">
+      <apls-checkbox formControlName="excecao">{{ 'label.apenas_excecao' | translate }}</apls-checkbox>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,85 @@
+<!-- TITULO -->
+<div class="apls-dialog-title">
+  {{ 'label.coletar_biometria' | translate }}
+</div>
+
+<!-- CONTEUDO DO MODAL -->
+<div class="container">
+  <div class="row pb-1">
+    <!-- TEXTO INFORMATIVO -->
+    <div class="col-12 text-center mb-3">
+      <h6 id="h-texto-informativo">{{ 'label.selecione_o_dedo' | translate }}</h6>
+    </div>
+
+    <!-- MAO ESQUERDA -->
+    <div class="col-6">
+      <div id="dv-mao-esquerda" class="fade-in">
+        <div [innerHtml]="MAO_ESQUERDA | safeHtml"></div>
+      </div>
+
+      <h6 id="h-esquerda">{{ 'label.esquerda' | translate }}</h6>
+
+      <div id="dv-digitais-esquerda" class="fade-in">
+        <div id="dv-box-digital-03" class="dv-box-digital">
+          <div id="dv-loader-esquerda-03" class="dv-temporizador">
+            <div class="dv-mascara-temporizador"></div>
+            <div id="dv-contador-03" class="dv-circulo-branco-contador"></div>
+          </div>
+          ​
+          <img id="img-coleta-01" class="fade-in" width="80" src="assets/images/finger.png" />
+        </div>
+        <div class="text-center mb-3 dv-coleta">{{ 'label.primeira_coleta' | translate }}</div>
+        <div id="dv-box-digital-04" class="dv-box-digital">
+          <div id="dv-loader-esquerda-04" class="dv-temporizador">
+            <div class="dv-mascara-temporizador"></div>
+            <div id="dv-contador-04" class="dv-circulo-branco-contador"></div>
+          </div>
+          ​
+          <img id="img-coleta-02" class="fade-in" width="80" src="assets/images/finger.png" />
+        </div>
+        <div class="text-center dv-coleta">{{ 'label.segunda_coleta' | translate }}</div>
+      </div>
+    </div>
+
+    <!-- MAO DIREITA -->
+    <div class="col-6">
+      <div id="dv-mao-direita" class="fade-in">
+        <div [innerHtml]="MAO_DIREITA | safeHtml"></div>
+      </div>
+      <h6 id="h-direita">{{ 'label.direita' | translate }}</h6>
+      <div id="dv-digitais-direita" class="fade-in">
+        <div id="dv-box-digital-01" class="dv-box-digital">
+          <div id="dv-loader-direita-01" class="dv-temporizador">
+            <div class="dv-mascara-temporizador"></div>
+            <div id="dv-contador-01" class="dv-circulo-branco-contador"></div>
+          </div>
+          ​
+          <img id="img-coleta-03" class="fade-in" width="80" src="assets/images/finger.png" />
+        </div>
+        <div class="text-center mb-3 dv-coleta">{{ 'label.primeira_coleta' | translate }}</div>
+        <div id="dv-box-digital-02" class="dv-box-digital">
+          <div id="dv-loader-direita-02" class="dv-temporizador">
+            <div class="dv-mascara-temporizador"></div>
+            <div id="dv-contador-02" class="dv-circulo-branco-contador"></div>
+          </div>
+          ​
+          <img id="img-coleta-04" class="fade-in finger02" width="80" src="assets/images/finger.png" />
+        </div>
+        <div class="text-center dv-coleta">{{ 'label.segunda_coleta' | translate }}</div>
+      </div>
+    </div>
+
+    <!-- ALERTA -->
+    <div class="col-12 mt-4">
+      <div id="dv-alerta" class="alert alert-warning text-center" role="alert"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="apls-alerta-actions">
+  <div id="dv-menu-modal" class="fade-in">
+    <button aplsButton class="btn-small" color="light" (click)="btnFecharModal($event)">{{ 'label.fechar' | translate }}</button>
+    <button aplsButton class="btn-small ml-2" (click)="btnSalvar()" [disabled]="!listaDigitaisAlterada">{{ 'label.salvar' | translate }}</button>
+  </div>
+</div>

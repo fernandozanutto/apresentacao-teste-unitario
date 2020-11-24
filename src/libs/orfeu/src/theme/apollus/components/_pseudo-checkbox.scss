@@ -1,0 +1,32 @@
+@mixin pseudo-checkbox($theme) {
+  $box-color: #000;
+  $marck-color: #fff;
+  $disabled-color: #b0b0b0;
+  $white-30pct-opacity-on-dark: #686868;
+  $black-26pct-opacity-on-light: #b0b0b0;
+  
+  $disabled-color: $black-26pct-opacity-on-light;
+  $colored-box-selector: '.apls-pseudo-checkbox-checked, .apls-pseudo-checkbox-indeterminate';
+
+  .apls-pseudo-checkbox {
+    color: $box-color;
+
+    &::after {
+      color: $marck-color;
+    }
+  }
+
+  .apls-pseudo-checkbox-checked,
+  .apls-pseudo-checkbox-indeterminate,
+  .apls-accent .apls-pseudo-checkbox-checked,
+  .apls-accent .apls-pseudo-checkbox-indeterminate {
+    background: $theme;
+  }
+
+  .apls-pseudo-checkbox-checked,
+  .apls-pseudo-checkbox-indeterminate {
+    &.apls-pseudo-checkbox-disabled {
+      background: $disabled-color;
+    }
+  }
+}

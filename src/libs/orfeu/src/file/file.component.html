@@ -1,0 +1,26 @@
+<p class="input-label label" [style.width.px]="width">
+  <!-- Label inserida pelo input -->
+  <label aplsInputLabel [innerHTML]="label" *ngIf="!!label"></label>
+  <!-- Tooltips dentro do input -->
+  <ng-content select="[aplsTooltip]"></ng-content>
+</p>
+
+<apls-input-form [input]="input">
+  <!-- Botão de localizar arquivo -->
+  <apls-input-group-prepend-text *ngIf="!hasFile" (click)="btnOpenDialog()">
+    <i class="fas fa-search icon-input-file"></i>
+  </apls-input-group-prepend-text>
+
+  <!-- Botão de abrir arquivo -->
+  <apls-input-group-prepend-text *ngIf="hasFile" (click)="btnOpenFile()" class="cursor-pointer-important">
+    <i class="far fa-eye icon-input-file cursor-pointer-important"></i>
+  </apls-input-group-prepend-text>
+
+  <!-- input inserido no template -->
+  <ng-content></ng-content>
+
+  <!-- Botão de apagar seleção -->
+  <apls-input-group-prepend-text *ngIf="hasFile && !disabled" (click)="cancel()">
+    <i class="fas fa-times icon-input-file"></i>
+  </apls-input-group-prepend-text>
+</apls-input-form>

@@ -1,0 +1,29 @@
+@import '../calendario-common-style.scss';
+
+.calendario-mini-mes-container {
+  padding-top: 16px;
+  font-size: 12px;
+
+  .descricao-mes {
+    text-align: center;
+    background-color: #fff;
+    margin-bottom: 8px;
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  .container-cabecalho-dias-da-semana {
+    display: flex;
+    justify-content: space-evenly;
+    color: rgba(0, 0, 0, 0.87);
+    margin-bottom: 8px;
+    user-select: none;
+  }
+
+  .semana {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 6px;
+  }
+}

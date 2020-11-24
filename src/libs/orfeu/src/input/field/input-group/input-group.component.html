@@ -1,0 +1,13 @@
+<p class="input-label label" [style.width.px]="width">
+    <!-- Label inserida pelo input -->
+    <label aplsInputLabel [innerHTML]="label" *ngIf="!!label"></label>
+    <!-- Label via HTML -->
+    <ng-content select="[aplsInputLabel]"></ng-content>
+    <!-- Tooltips dentro do input -->
+    <ng-content select="[aplsTooltip]"></ng-content>
+</p>
+
+<apls-input-form [input]="input">
+    <!-- Input e se existir seus prepend -->
+    <ng-content></ng-content> 
+</apls-input-form>

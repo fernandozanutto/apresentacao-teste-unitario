@@ -1,0 +1,56 @@
+// Notes on the classes:
+//
+// 1. The .carousel-item-left and .carousel-item-right is used to indicate where
+//    the active slide is heading.
+// 2. .active.carousel-item is the current slide.
+// 3. .active.carousel-item-left and .active.carousel-item-right is the current
+//    slide in its in-transition state. Only one of these occurs at a time.
+// 4. .carousel-item-next.carousel-item-left and .carousel-item-prev.carousel-item-right
+//    is the upcoming slide in transition.
+
+.carousel {
+  position: relative;
+}
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-item {
+  position: relative;
+  // display: none;
+  align-items: center;
+  width: 100%;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+  display: block;
+  @include transition($carousel-transition);
+}
+
+.carousel-item-next,
+.carousel-item-prev {
+  position: absolute;
+  top: 0;
+}
+
+.carousel-item-next.carousel-item-left,
+.carousel-item-prev.carousel-item-right {
+  transform: translateX(0);
+}
+
+.carousel-item-next,
+.active.carousel-item-right {
+  transform: translateX(100%);
+}
+
+.carousel-item-prev,
+.active.carousel-item-left {
+  transform: translateX(-100%);
+}

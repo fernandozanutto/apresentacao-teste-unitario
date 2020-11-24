@@ -1,0 +1,253 @@
+@import '../core/style/menu-common';
+@import '../core/style/list-common';
+@import '../core/style/variables';
+@import '../core/style/checkbox-common';
+@import '../core/style/vendor-prefixes';
+@import '../core/selection/pseudo-checkbox/pseudo-checkbox';
+@import '~@angular/cdk/_a11y';
+@import 'select-theme';
+
+$apls-select-arrow-size: 5px !default;
+$apls-select-arrow-margin: 4px !default;
+$apls-select-panel-max-height: 256px !default;
+$apls-select-item-height: 2.5em !default;
+
+$apls-select-placeholder-arrow-space: 2 * ($apls-select-arrow-size + $apls-select-arrow-margin);
+
+.apls-select {
+  display: inline-block;
+  width: 100%;
+  outline: none;
+  padding-top: inherit;
+  padding-bottom: inherit;
+  padding-left: inherit;
+  min-height: 30px;
+}
+
+.apls-select-value {
+  padding: 0.39rem 0px 0.39rem 0.45rem;
+}
+
+.apls-confirm{
+  width: $apls-checkbox-size;
+  height: $apls-checkbox-size;
+  border: $apls-checkbox-border-width solid;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  position: relative;
+  flex-shrink: 0;
+  background-color: black;
+  &:after {
+    color:white;
+    position: absolute;
+    opacity: 0;
+    content: '';
+    border-bottom: $apls-checkbox-border-width solid currentColor;
+    top: ($apls-checkbox-size / 2) - ($_apls-pseudo-checkmark-size / 4) - ($apls-checkbox-size / 10);
+    left: 1.5px;
+    width: $_apls-pseudo-checkmark-size;
+    height: ($_apls-pseudo-checkmark-size - $apls-checkbox-border-width) / 2;
+    border-left: $apls-checkbox-border-width solid currentColor;
+    transform: rotate(-45deg);
+    opacity: 1;
+  }
+}
+
+.apls-reset {
+  background-color: black;
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+  padding: 0px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  cursor: pointer;
+  .fas {
+    color: white;
+  }
+}
+
+.apls-close {
+  background-color: black;
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+  padding: 0px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:after {
+    content: "\d7";
+    padding: 0px;
+    font-size: 20px;
+    color: #FFF;
+    line-height: 15px;
+    display: inline-block;
+    font-family: 'Times New Roman';
+  }
+}
+
+.allbutton {
+  min-width: 110px;
+}
+
+.apls-select-trigger {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+
+  .apls-select-disabled & {
+    @include user-select(none);
+    cursor: default;
+  }
+}
+
+.apls-select-content, .apls-select-panel-done-animating {
+  background-color: white;
+}
+
+.apls-select-value {
+  display: table-cell;
+  max-width: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apls-select-value-text {
+  @include apls-truncate-line();
+}
+
+.apls-select-arrow-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+
+  .apls-form-field-appearance-fill &,
+  .apls-form-field-appearance-standard & {
+    transform: translateY(-50%);
+  }
+
+  .apls-form-field-appearance-outline & {
+    transform: translateY(-25%);
+  }
+}
+
+.apls-select-arrow {
+  width: 0;
+  height: 0;
+  border-left: $apls-select-arrow-size solid transparent;
+  border-right: $apls-select-arrow-size solid transparent;
+  border-top: $apls-select-arrow-size solid;
+  margin: 0 $apls-select-arrow-margin;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  justify-content: space-between;
+  > div {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.count {
+  margin-left: 5px;
+  user-select: none;
+}
+
+.line {
+  display: block;
+  position: absolute;
+  left: 45%;
+  border-bottom: 2px solid #ced4da;
+  width: 0%;
+  text-align: left;
+  animation: line 225ms cubic-bezier(0.4,0.0,1,1) forwards;
+}
+
+@keyframes line {
+  from {
+    left: 45%;
+    width:0%;
+  }
+  to {
+    left: 2.5%;
+    width:95%;
+  }
+}
+
+.apls-filter {
+  padding: 5px 0px 5px 0px;
+  background-color: white;
+
+  .apls-input {
+    border-radius: 0px !important;
+    border-width: 0px !important;
+    &:hover, &:focus {
+      border-color: rgb(206, 212, 218) !important;
+    }
+  }
+}
+
+.apls-select-body {
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0), 
+              0px 8px 10px 1px rgba(0, 0, 0, 0.14), 
+              0px 2px 16px 1px rgba(0, 0, 0, 0.14);
+}
+
+.apls-select-panel {
+  min-width: $apls-menu-overlay-min-width;
+  max-width: $apls-menu-overlay-max-width;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;   // for momentum scroll on mobile
+
+  padding-top: 0;
+  padding-bottom: 0;
+  max-height: $apls-select-panel-max-height;
+  min-width: inherit !important; 
+  border-top: 0px solid transparent;
+
+  @include cdk-high-contrast {
+    outline: solid 1px;
+  }
+}
+
+.apls-select-panel {
+  .apls-optgroup-label,
+  .apls-option {
+    line-height: $apls-select-item-height;
+    min-height: $apls-select-item-height;
+  }
+}
+
+.apls-form-field-type-apls-select {
+  &:not(.apls-form-field-disabled) .apls-form-field-flex {
+    cursor: pointer;
+  }
+
+  .apls-form-field-label {
+    width: calc(100% - #{$apls-select-placeholder-arrow-space});
+  }
+}
+
+.apls-select-placeholder {
+  transition: color $swift-ease-out-duration $swift-ease-out-duration / 3
+      $swift-ease-out-timing-function;
+
+  .apls-form-field-hide-placeholder & {
+    color: transparent;
+    transition: none;
+    display: block;
+  }
+}

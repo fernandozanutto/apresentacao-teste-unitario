@@ -1,0 +1,238 @@
+@import '../core/style/_variables';
+@import '../core/style/_elevation';
+@import '~@angular/cdk/_a11y';
+@import 'card-theme';
+
+
+$apls-card-default-padding: 24px !default;
+$apls-card-mobile-padding: 24px 16px !default;
+$apls-card-border-radius: 2px !default;
+$apls-card-header-size: 40px !default;
+
+.apls-card {
+  @include apls-elevation-transition;
+  @include apls-overridable-elevation(2);
+  display: block;
+  position: relative;
+  padding: $apls-card-default-padding;
+  border-radius: $apls-card-border-radius;
+
+  .apls-divider {
+    position: absolute;
+    left: 0;
+    width: 100%;
+
+    [dir='rtl'] & {
+      left: auto;
+      right: 0;
+    }
+
+    &.apls-divider-inset {
+      position: static;
+      margin: 0;
+    }
+  }
+
+  // Needs extra specificity to be able to override the elevation selectors.
+  &.apls-card-flat {
+    box-shadow: none;
+  }
+
+  @include cdk-high-contrast {
+    outline: solid 1px;
+  }
+}
+
+// base styles for each card section preset (apls-card-content, etc)
+%apls-card-section-base {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.apls-card-title, .apls-card-subtitle, .apls-card-content {
+  @extend %apls-card-section-base;
+}
+
+.apls-card-actions {
+  @extend %apls-card-section-base;
+  margin-left: -16px;
+  margin-right: -16px;
+  padding: 8px 0;
+}
+
+.apls-card-actions-align-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.apls-card-image {
+  width: calc(100% + 48px);
+  margin: 0 -24px 16px -24px;
+}
+
+.apls-card-xl-image {
+  width: 240px;
+  height: 240px;
+  margin: -8px;
+}
+
+.apls-card-footer {
+  // The negative margins pulls out the element, countering the padding
+  // to get the footer to be flush against the side of the card.
+  $margin: -$apls-card-default-padding;
+
+  display: block;
+  margin: 0 $margin $margin $margin;
+}
+
+.apls-card-actions {
+  .apls-button, .apls-raised-button {
+    margin: 0 4px;
+  }
+}
+
+// HEADER STYLES
+
+.apls-card-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.apls-card-header-text {
+  margin: 0;
+}
+
+.apls-card-avatar {
+  height: $apls-card-header-size;
+  width: $apls-card-header-size;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// TITLE-GROUP STYLES
+
+// images grouped with title in title-group layout
+%apls-card-title-img {
+  margin: -8px 0;
+}
+
+.apls-card-title-group {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -8px;
+}
+
+.apls-card-sm-image {
+  @extend %apls-card-title-img;
+  width: 80px;
+  height: 80px;
+}
+
+.apls-card-md-image {
+  @extend %apls-card-title-img;
+  width: 112px;
+  height: 112px;
+}
+
+.apls-card-lg-image {
+  @extend %apls-card-title-img;
+  width: 152px;
+  height: 152px;
+}
+
+// MEDIA QUERIES
+
+@media ($apls-xsmall) {
+  .apls-card {
+    padding: $apls-card-mobile-padding;
+  }
+
+  .apls-card-actions {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+
+  .apls-card-image {
+    width: calc(100% + 32px);
+    margin: 16px -16px;
+  }
+
+  .apls-card-title-group {
+    margin: 0;
+  }
+
+  .apls-card-xl-image {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .apls-card-header {
+    margin: -8px 0 0 0;
+  }
+
+  .apls-card-footer {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+}
+
+// FIRST/LAST CHILD ADJUSTMENTS
+
+// top els in apls-card-content and apls-card can't have their default margin-tops (e.g. <p> tags)
+// or they'll incorrectly add to card's top padding
+.apls-card > :first-child, .apls-card-content > :first-child {
+  margin-top: 0;
+}
+
+// last els in apls-card-content and apls-card can't have their default margin-bottoms (e.g. <p> tags)
+// or they'll incorrectly add to card's bottom padding
+.apls-card > :last-child:not(.apls-card-footer),
+.apls-card-content > :last-child:not(.apls-card-footer) {
+  margin-bottom: 0;
+}
+
+// if main image is on top, need to place it flush against top
+// (by stripping card's default 24px padding)
+.apls-card-image:first-child {
+  margin-top: -24px;
+}
+
+// actions panel on bottom should be 8px from bottom of card
+// so must strip 16px from default card padding of 24px
+.apls-card > .apls-card-actions:last-child {
+  margin-bottom: -16px;
+  padding-bottom: 0;
+}
+
+// actions panel should always be 8px from sides,
+// so the first button in the actions panel can't add its own margins
+.apls-card-actions .apls-button:first-child,
+.apls-card-actions .apls-raised-button:first-child {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// should be 12px space between titles and subtitles generally
+// default margin-bottom is 16px, so need to move lower title up 4px
+.apls-card-title:not(:first-child), .apls-card-subtitle:not(:first-child) {
+  margin-top: -4px;
+}
+
+// should be 8px space between titles and subtitles in header
+// default margin-bottom is 16px, so need to move subtitle in header up 4px
+.apls-card-header .apls-card-subtitle:not(:first-child) {
+  margin-top: -8px;
+}
+
+// xl image should always have 16px on top.
+// when it's the first el, it'll need to remove 8px from default card padding of 24px
+.apls-card > .apls-card-xl-image:first-child {
+  margin-top: -8px;
+}
+
+// xl image should always have 16px on bottom
+// when it's the last el, it'll need to remove 8px from default card padding of 24px
+.apls-card > .apls-card-xl-image:last-child {
+  margin-bottom: -8px;
+}

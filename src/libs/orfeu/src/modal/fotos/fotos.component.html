@@ -1,0 +1,43 @@
+<!-- TITULO -->
+<div class="apls-dialog-title">
+  {{'label.foto' | translate }}
+</div>
+
+<!-- CONTEUDO DO MODAL -->
+<div class="apls-alerta-content">
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let item of controleItens; index as i" [@state]="item.status" (@state.done)="setaProximoAnterior()">
+                <a class="link_img" [href]="item.foto" target="_blank" rel="noopener noreferrer"> <img title="Clique para abrir" [src]="item.foto" class="img-paginada"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="apls-alerta-actions">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 dv-paginador">
+            <div class="paginator" *ngIf="possuiPaginador">
+                <!-- Botão de voltar -->
+                <button class="btn-arrow" [disabled]="emAnimacao || (index + 1) <= 1" (click)="anterior()">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+
+                <!-- Label com o numero de pagina e a pagina atual -->
+                <div class="col-label">
+                    <p class="lb">{{ index + 1 }} / {{ controleItens.length }}</p>
+                </div>
+
+                <!-- Botão de avançar pagina -->
+                <button class="btn-arrow" [disabled]="emAnimacao || (index + 1) >= controleItens.length" (click)="proxima()">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-2">
+            <button aplsButton class="btn-fechar-modal" color="light" (click)="btnFechar()">{{'label.fechar' | translate }}</button>
+        </div>
+    </div>
+</div>

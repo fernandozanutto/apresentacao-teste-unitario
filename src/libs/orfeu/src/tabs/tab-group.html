@@ -1,0 +1,66 @@
+<apls-tab-header #tabHeader
+               *ngIf="headerIcones === 'esconder'" 
+               [selectedIndex]="selectedIndex"
+               (indexFocused)="_focusChanged($event)"
+               (selectFocusedIndex)="selectedIndex = $event">
+  <div class="apls-tab-label" role="tab" aplsTabLabelWrapper
+       *ngFor="let tab of _tabs; let i = index"
+       [id]="_getTabLabelId(i)"
+       [attr.tabIndex]="_getTabIndex(tab, i)"
+       [attr.aria-controls]="_getTabContentId(i)"
+       [attr.aria-selected]="selectedIndex == i"
+       [class.apls-tab-label-active]="selectedIndex == i"
+       [disabled]="tab.disabled"
+       (click)="_handleClick(tab, tabHeader, i)">
+
+
+    <div class="apls-tab-label-content">
+      <ng-template [ngIf]="tab.templateLabel">
+        <ng-template [cdkPortalOutlet]="tab.templateLabel"></ng-template>
+      </ng-template>
+
+      <ng-template [ngIf]="!tab.templateLabel">{{tab.textLabel}}</ng-template>
+    </div>
+  </div>
+</apls-tab-header>
+
+<apls-tab-header-icones 
+               #tabHeader
+               *ngIf="headerIcones === 'mostrar'" 
+               [selectedIndex]="selectedIndex"
+               (indexFocused)="_focusChanged($event)"
+               (selectFocusedIndex)="selectedIndex = $event">
+  <div class="apls-tab-icones-label" role="tab" aplsTabLabelWrapper
+       *ngFor="let tab of _tabs; let i = index"
+       [id]="_getTabLabelId(i)"
+       [attr.tabIndex]="_getTabIndex(tab, i)"
+       [attr.aria-controls]="_getTabContentId(i)"
+       [attr.aria-selected]="selectedIndex == i"
+       [class.apls-tab-label-active]="selectedIndex == i"
+       [disabled]="tab.disabled"
+       (click)="_handleClick(tab, tabHeader, i)">
+
+
+    <div class="apls-tab-icones-label-content">
+      <ng-template [ngIf]="tab.templateLabel">
+        <ng-template [cdkPortalOutlet]="tab.templateLabel"></ng-template>
+      </ng-template>
+
+      <ng-template [ngIf]="!tab.templateLabel">{{tab.textLabel}}</ng-template>
+    </div>
+  </div>
+</apls-tab-header-icones>
+
+<div class="apls-tab-body-wrapper" #tabBodyWrapper>
+  <apls-tab-body role="tabpanel"
+               *ngFor="let tab of _tabs; let i = index"
+               [id]="_getTabContentId(i)"
+               [attr.aria-labelledby]="_getTabLabelId(i)"
+               [class.apls-tab-body-active]="selectedIndex == i"
+               [content]="tab.content"
+               [position]="tab.position"
+               [origin]="tab.origin"
+               (_onCentered)="_removeTabBodyWrapperHeight()"
+               (_onCentering)="_setTabBodyWrapperHeight($event)">
+  </apls-tab-body>
+</div>

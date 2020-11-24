@@ -1,0 +1,16 @@
+<table class="apls-calendar-table">
+  <thead class="apls-calendar-table-header">
+    <tr><th *ngFor="let day of _weekdays" [attr.aria-label]="day.long">{{day.narrow}}</th></tr>
+    <tr><th class="apls-calendar-table-header-divider" colspan="7" aria-hidden="true"></th></tr>
+  </thead>
+  <tbody apls-calendar-body
+         [label]="_monthLabel"
+         [rows]="_weeks"
+         [todayValue]="_todayDate"
+         [selectedValue]="_selectedDate"
+         [labelMinRequiredCells]="3"
+         [activeCell]="_dateAdapter.getDate(activeDate) - 1"
+         (selectedValueChange)="_dateSelected($event)"
+         (keydown)="_handleCalendarBodyKeydown($event)">
+  </tbody>
+</table>

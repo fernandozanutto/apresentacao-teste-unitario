@@ -1,0 +1,38 @@
+<label [attr.for]="inputId" class="apls-checkbox-layout" #label>
+  <div class="apls-checkbox-inner-container"
+       [class.apls-checkbox-inner-container-no-side-margin]="!checkboxLabel.textContent || !checkboxLabel.textContent.trim()">
+    <input #input
+           class="apls-checkbox-input cdk-visually-hidden" type="checkbox"
+           [id]="inputId"
+           [required]="required"
+           [checked]="checked"
+           [attr.value]="value"
+           [disabled]="disabled"
+           [attr.name]="name"
+           [tabIndex]="tabIndex"
+           [indeterminate]="indeterminate"
+           [attr.aria-label]="ariaLabel || null"
+           [attr.aria-labelledby]="ariaLabelledby"
+           [attr.aria-checked]="_getAriaChecked()"
+           (change)="_onInteractionEvent($event)"
+           (click)="_onInputClick($event)">
+    <div class="apls-checkbox-frame"></div>
+    <div class="apls-checkbox-background">
+      <svg version="1.1"
+           focusable="false"
+           class="apls-checkbox-checkmark"
+           viewBox="0 0 24 24"
+           xml:space="preserve">
+        <path class="apls-checkbox-checkmark-path"
+              fill="none"
+              stroke="white"
+              d="M4.1,12.7 9,17.6 20.3,6.3"/>
+      </svg>
+      <div class="apls-checkbox-mixedmark"></div>
+    </div>
+  </div>
+  <span class="apls-checkbox-label" #checkboxLabel (cdkObserveContent)="_onLabelTextChange()">
+    <span style="display:none">&nbsp;</span>
+    <ng-content></ng-content>
+  </span>
+</label>

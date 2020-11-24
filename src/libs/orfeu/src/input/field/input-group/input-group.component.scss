@@ -1,0 +1,38 @@
+.input-label {
+  display: flex;
+
+  span {
+    width: auto;
+  }
+
+  label[aplsinputlabel] {
+    padding-right: 5px;
+  }
+
+  span[aplsinputhint] {
+    flex: 1 !important;
+    line-height: 15px;
+  }
+
+  i[aplstooltip] {
+    line-height: 17px;
+    font-size: 11px;
+  }
+
+  .length {
+    font-size: 13px;
+    min-height: 16px;
+  }
+
+  .form-text {
+    min-height: 16px;
+  }
+
+  &.label {
+    margin: 0px;
+  }
+
+  &.hint {
+    margin: 0rem 0px 0.2rem 0;
+  }
+}

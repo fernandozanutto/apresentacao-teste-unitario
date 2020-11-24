@@ -1,0 +1,14 @@
+.media {
+  display: flex;
+  align-items: flex-start;
+}
+
+.fill {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.media-body {
+  flex: 1;
+}

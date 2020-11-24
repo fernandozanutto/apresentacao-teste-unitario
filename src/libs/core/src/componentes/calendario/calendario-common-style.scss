@@ -1,0 +1,27 @@
+$cor-dia-vazio: #009e0f;
+$cor-dia-tranquilo: #2b78e4;
+$cor-dia-moderado: #ff9900;
+$cor-dia-concorrido: #cf2a27;
+$cor-dia-lotado: #9f00fe;
+$cor-dia-indisponivel: #999999;
+
+$cor-dia-desabilitado: #dddddd;
+
+$border-radius-padrao: 20%;
+
+@mixin size($width, $height) {
+  height: $height;
+  width: $width;
+}
+
+@mixin radial($width, $height) {
+  @include size($width, $height);
+  border-radius: $border-radius-padrao;
+}
+
+@mixin radialCenter($width, $height) {
+  @include radial($width, $height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

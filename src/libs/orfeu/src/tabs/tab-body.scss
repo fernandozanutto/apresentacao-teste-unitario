@@ -1,0 +1,9 @@
+.apls-tab-body-content {
+  height: 100%;
+  overflow-y: auto;
+  background-color: white;
+
+  .apls-tab-group-dynamic-height & {
+    overflow: hidden;
+  }
+}

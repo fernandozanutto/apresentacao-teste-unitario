@@ -1,0 +1,5 @@
+@mixin calendar($color) {
+  .apls-calendar-body-selected {
+    background-color: $color;
+  }
+}

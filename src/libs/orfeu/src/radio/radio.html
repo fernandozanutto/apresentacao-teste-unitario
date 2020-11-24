@@ -1,0 +1,23 @@
+<label [attr.for]="inputId" class="apls-radio-label" #label>
+  <div class="apls-radio-container">
+    <div class="apls-radio-outer-circle"></div>
+    <div class="apls-radio-inner-circle"></div>
+  </div>
+
+  <input #input class="apls-radio-input cdk-visually-hidden" type="radio"
+         [id]="inputId"
+         [checked]="checked"
+         [disabled]="disabled"
+         [attr.name]="name"
+         [required]="required"
+         [attr.aria-label]="ariaLabel"
+         [attr.aria-labelledby]="ariaLabelledby"
+         [attr.aria-describedby]="ariaDescribedby"
+         (change)="_onInputChange($event)"
+         (click)="_onInputClick($event)">
+
+  <div class="apls-radio-label-content">
+    <span style="display:none">&nbsp;</span>
+    <ng-content></ng-content>
+  </div>
+</label>

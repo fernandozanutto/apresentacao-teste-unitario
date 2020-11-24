@@ -1,0 +1,29 @@
+@mixin radio($color, $disable) {
+  .apls-radio-button {
+    &.apls-radio-checked .apls-radio-outer-circle {
+        border-color: $color;
+    }
+
+    .apls-radio-inner-circle {
+        background-color: $color;
+    }
+
+    .apls-radio-outer-circle {
+      border-color: gray;
+    }
+
+    .apls-radio-disabled .apls-radio-outer-circle {
+      border-color: $disable;
+    }
+
+    .apls-radio-disabled {
+        .apls-radio-inner-circle {
+          background-color: $disable;
+        }
+
+        .apls-radio-label-content {
+          color: $disable;
+        }
+    }
+  }
+}

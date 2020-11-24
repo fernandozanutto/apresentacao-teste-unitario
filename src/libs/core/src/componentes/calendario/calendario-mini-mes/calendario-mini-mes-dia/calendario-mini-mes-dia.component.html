@@ -1,0 +1,10 @@
+<div
+  class="dia-da-semana"
+  [ngClass]="{ desabilitado: desabilitado, 'hoje': isToday(diaDoMes) }"
+  [aplsTooltip]="isToday(diaDoMes) ? 'Hoje' : ''"
+  (click)="clickDia()"
+>
+  <span>
+    {{ diaDoMes | date: 'dd' }}
+  </span>
+</div>

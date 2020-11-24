@@ -1,0 +1,37 @@
+@import '../core/theming/palette';
+@import '../core/theming/theming';
+@import '../core/typography/typography-utils';
+
+
+@mixin apls-card-theme($theme) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .apls-card {
+    background: apls-color($background, card);
+    color: apls-color($foreground, text);
+  }
+
+  .apls-card-subtitle {
+    color: apls-color($foreground, secondary-text);
+  }
+}
+
+@mixin apls-card-typography($config) {
+  .apls-card {
+    font-family: apls-font-family($config);
+  }
+
+  .apls-card-title {
+    font: {
+      size: apls-font-size($config, headline);
+      weight: apls-font-weight($config, headline);
+    }
+  }
+
+  .apls-card-subtitle,
+  .apls-card-content,
+  .apls-card-header .apls-card-title {
+    font-size: apls-font-size($config, body-1);
+  }
+}

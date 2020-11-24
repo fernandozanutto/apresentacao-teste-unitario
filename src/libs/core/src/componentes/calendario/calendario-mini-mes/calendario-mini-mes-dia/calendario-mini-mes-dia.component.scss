@@ -1,0 +1,28 @@
+@import '../../calendario-common-style.scss';
+
+.dia-da-semana {
+  @include radialCenter(24px, 24px);
+  border-radius: 100%;
+  // background-color: var(--var-cor-dia);
+  // color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  user-select: none;
+  cursor: pointer;
+}
+
+.dia-da-semana:not(.desabilitado):hover {
+  // box-shadow: 0 0 4px 2px var(--var-cor-dia);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.33);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.desabilitado {
+  // background-color: $cor-dia-desabilitado;
+  color: rgba(0, 0, 0, 0.53);
+  cursor: default;
+}
+
+.hoje {
+  color: var(--vermelho);
+  font-weight: 700;
+}

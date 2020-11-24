@@ -1,11 +1,58 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { AplsCache, CollectionsUtils, formatarResponseParaAsync, HttpApollus, UsuarioLogado } from '@apollus-ngx/core';
-import { PerfilEnum, StatusEnum } from '@apollus/common/enums';
-import { Areas, AreaService } from '@apollus/modulos';
-import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map, pairwise, startWith, tap } from 'rxjs/operators';
+import { AplsCache, CollectionsUtils, formatarResponseParaAsync, HttpApollus, UsuarioLogado } from '../../libs/core';
+
+export enum StatusEnum {
+  ATIVO = 'A',
+  INATIVO = 'I',
+  CANDIDATO = 'C',
+  DESCRITIVO = 'D',
+  TODOS = '0'
+}
+
+
+export enum PerfilEnum {
+  PERFIL_ADM_MASTER = 'AM',
+  PERFIL_ADM_BASICO = 'AB',
+  PERFIL_ADMINISTADOR = 'AR',
+  PERFIL_SEGURANCA = 'SG',
+  PERFIL_RH = 'RH',
+  PERFIL_MEDICO_COORDENADOR = 'MC',
+  PERFIL_MEDICO_AVALIADOR = 'MA',
+  PERFIL_ADMINISTRATIVO = 'AD',
+  PERFIL_ENFERMAGEM = 'EN',
+  PERFIL_BASICO = 'BS',
+  PERFIL_USUARIO = 'US',
+  PERFIL_FONOAUDIOLOGO = 'FO',
+  PERFIL_CORPORATIVO = 'CO',
+  PERFIL_LIDER = 'LI',
+  PERFIL_PROFESSOR = 'PR',
+  PERFIL_ALUNO = 'AL'
+}
+
+export interface Areas {
+  id: number;
+  numeroFuncionario: number;
+  codigo: string;
+  descricao: string;
+  status: string;
+}
+
+export interface AreaDTO {
+  id: number;
+  codigo: string;
+  descricao: string;
+  hierarquiaAcessivel: boolean;
+  nivelPai: boolean;
+  tipoInscricao: number;
+  status: Status;
+}
+
+type StatusValues = 'A' | 'I' | 'A,I' | 'C';
+
+export type Status = StatusValues | { status: StatusValues };
 
 @Component({
   selector: 'apls-campo-areas',
@@ -99,9 +146,8 @@ export class CampoAreasComponent implements OnInit {
     private collectionsUtils: CollectionsUtils,
     private httpApollus: HttpApollus,
     private areaService: AreaService,
-    private translate: TranslateService
   ) {
-    this.INATIVO = this.translate.instant('label.status_inativo');
+    this.INATIVO = "INATIVO"
   }
 
   ngOnInit() {
@@ -301,10 +347,7 @@ export class CampoAreasComponent implements OnInit {
    */
   private listarAreasPeloNivelId(idArea: any, nivel = 0): Observable<any> {
     const status = this.somenteAtivos ? 'A' : 0;
-    return this.httpApollus.cache(
-      `areas-${status}-${nivel}-${idArea}`,
-      this.areaService.listarAreasPeloNivelId(nivel, idArea, status).pipe(map(formatarResponseParaAsync), map(this.tratarResponseListaArea.bind(this)))
-    );
+    return this.areaService.listarAreasPeloNivelId(nivel, idArea, status).pipe(map(formatarResponseParaAsync), map(this.tratarResponseListaArea.bind(this)))
   }
 
   private tratarResponseListaArea(response: any) {
@@ -344,7 +387,7 @@ export class CampoAreasComponent implements OnInit {
   public buscarDescricaoArea(area): string {
     if (!area) return '';
 
-    const inativo = area.status === StatusEnum.INATIVO ? `(${this.translate.instant('label.status_inativo')})` : '';
+    const inativo = area.status === StatusEnum.INATIVO ? `Inativo` : '';
 
     return `${area.descricao} ${inativo}`;
   }

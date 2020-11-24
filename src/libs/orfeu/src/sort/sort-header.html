@@ -1,0 +1,26 @@
+<div class="apls-sort-header-container"
+     [class.apls-sort-header-sorted]="_isSorted()"
+     [class.apls-sort-header-position-before]="arrowPosition == 'before'">
+  <button class="apls-sort-header-button" type="button"
+          [attr.disabled]="_isDisabled() || null"
+          [attr.aria-label]="_intl.sortButtonLabel(id)"
+          (focus)="_setIndicatorHintVisible(true)"
+          (blur)="_setIndicatorHintVisible(false)">
+    <ng-content></ng-content>
+  </button>
+
+  <!-- Disable animations while a current animation is running -->
+  <div class="apls-sort-header-arrow"
+       [@arrowOpacity]="_getArrowViewState()"
+       [@arrowPosition]="_getArrowViewState()"
+       [@allowChildren]="_getArrowDirectionState()"
+       (@arrowPosition.start)="_disableViewStateAnimation = true"
+       (@arrowPosition.done)="_disableViewStateAnimation = false">
+    <div class="apls-sort-header-stem"></div>
+    <div class="apls-sort-header-indicator" [@indicator]="_getArrowDirectionState()">
+      <div class="apls-sort-header-pointer-left" [@leftPointer]="_getArrowDirectionState()"></div>
+      <div class="apls-sort-header-pointer-right" [@rightPointer]="_getArrowDirectionState()"></div>
+      <div class="apls-sort-header-pointer-middle"></div>
+    </div>
+  </div>
+</div>

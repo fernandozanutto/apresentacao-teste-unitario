@@ -1,0 +1,21 @@
+<!-- TITULO -->
+<apls-dialog-title> {{ 'label.comparar_biometria' | translate }} - {{ comparaBiometria.entidade }} </apls-dialog-title>
+
+<apls-dialog-content>
+  <!-- BOX DIGITAL -->
+  <div class="dv-box-digital" #dvBoxDigital>
+    <div class="dv-temporizador">
+      <div class="dv-mascara-temporizador"></div>
+      <div id="dv-contador" class="dv-circulo-branco-contador"></div>
+    </div>
+  </div>
+
+  <!-- MENSAGEM ALERTA -->
+  <div class="col-12 mt-4">
+    <div id="dv-alerta" class="alert alert-warning text-center" role="alert">
+      {{ 'label.insira_o_dedo_no_leitor' | translate }}
+    </div>
+  </div>
+
+  <div #dvPosicao></div>
+</apls-dialog-content>

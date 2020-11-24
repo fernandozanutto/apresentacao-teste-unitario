@@ -1,0 +1,13 @@
+.apls-select {
+  cursor: pointer;
+  padding-right: 2px !important;
+  
+  &.ng-invalid.ng-touched{
+    border-color: #ad4646;
+    box-shadow: 1px 1px 15px 1px #ad464661;
+    &::placeholder { 
+        color: #ad4646;
+        opacity: 1; 
+    }
+  }
+}

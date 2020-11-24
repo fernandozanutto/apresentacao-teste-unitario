@@ -1,0 +1,55 @@
+@import '../theming/palette';
+@import '../theming/theming';
+@import '../typography/typography-utils';
+
+@mixin apls-option-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  .apls-option {
+    color: apls-color($foreground, text);
+
+    &:hover:not(.apls-option-disabled),
+    &:focus:not(.apls-option-disabled) {
+      background: apls-color($background, hover);
+    }
+
+    // In multiple mode there is a checkbox to show that the option is selected.
+    &.apls-selected:not(.apls-option-multiple):not(.apls-option-disabled) {
+      background: apls-color($background, hover);
+    }
+
+    &.apls-active {
+      background: apls-color($background, hover);
+      color: apls-color($foreground, text);
+    }
+
+    &.apls-option-disabled {
+      color: apls-color($foreground, hint-text);
+    }
+  }
+
+  .apls-primary .apls-option.apls-selected:not(.apls-option-disabled) {
+    color: apls-color($primary);
+  }
+
+  .apls-accent .apls-option.apls-selected:not(.apls-option-disabled) {
+    color: apls-color($accent);
+  }
+
+  .apls-warn .apls-option.apls-selected:not(.apls-option-disabled) {
+    color: apls-color($warn);
+  }
+}
+
+@mixin apls-option-typography($config) {
+  .apls-option {
+    font: {
+      family: apls-font-family($config, subheading-2);
+      size: apls-font-size($config, subheading-2);
+    }
+  }
+}

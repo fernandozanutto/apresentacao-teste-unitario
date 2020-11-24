@@ -1,0 +1,11 @@
+@import '../style/menu-common';
+@import '../style/vendor-prefixes';
+
+.apls-optgroup-label {
+  @include apls-menu-item-base();
+  @include user-select(none);
+  cursor: default;
+  line-height: 40px !important;
+  margin-bottom: 0px;
+  font-weight: 500;
+}

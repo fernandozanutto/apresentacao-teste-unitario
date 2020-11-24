@@ -1,0 +1,250 @@
+.menu-habilitado {
+  .card {
+    margin-bottom: 20px;
+    border-radius: 0;
+    cursor: pointer;
+  }
+
+  .card-body {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    height: 164px;
+    color: white;
+    background-color: white;
+    box-shadow: inset 0 0 70px #e4e4e4;
+  }
+
+  .card-title {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .shadow-menu {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    transition: all 0.1s ease-in-out;
+  }
+
+  .shadow-menu::after {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.1s ease-in-out;
+  }
+
+  .shadow-menu:hover {
+    transform: scale(1.01, 1.01);
+    box-shadow: 0 2px 17px rgba(0, 0, 0, 0.3);
+  }
+
+  .shadow-menu:hover::after {
+    opacity: 1;
+  }
+
+  .fadein {
+    animation: 0.5s ease 0s normal forwards 1 fadein;
+    opacity: 1;
+  }
+
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .lock-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 25px;
+    margin-top: 15px;
+    visibility: hidden;
+  }
+
+  .lock-menu i {
+    color: white;
+  }
+
+  .dot {
+    padding-top: 3px;
+    height: 30px;
+    width: 30px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .menu-box-progress-bar {
+    margin-top: -4px;
+    height: 4px;
+  }
+}
+
+.menu-desabilitado {
+  .card {
+    margin-bottom: 20px;
+    border-radius: 0;
+  }
+
+  .card-body {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 164px;
+    text-align: center;
+    color: white;
+    background-color: white;
+    box-shadow: inset 0 0 70px #e4e4e4;
+  }
+
+  .card-title {
+    color: #757575;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .fonte-cor-padrao:before {
+    color: #757575;
+  }
+
+  .fadein {
+    animation: 0.5s ease 0s normal forwards 1 fadein;
+    opacity: 1;
+  }
+
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .lock-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 25px;
+    margin-top: 15px;
+  }
+
+  .lock-menu i {
+    color: white;
+  }
+
+  .dot {
+    padding-top: 3px;
+    height: 30px;
+    width: 30px;
+    background-color: #757575;
+    border-radius: 50%;
+    display: inline-block;
+  }
+}
+
+/**
+* As três classes seguintes estão interferindo com os estilos
+* de card default. Ainda esses não parecem estarem sendo usados
+*/
+
+/*
+.card {
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.card-body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  height: 164px;
+  color: white;
+  background-color: white;
+  box-shadow: inset 0 0 70px #e4e4e4;
+}
+
+.card-title {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+*/
+
+.shadow-menu {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  transition: all 0.1s ease-in-out;
+}
+
+.shadow-menu::after {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.1s ease-in-out;
+}
+
+.shadow-menu:hover {
+  transform: scale(1.01, 1.01);
+  box-shadow: 0 2px 17px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-menu:hover::after {
+  opacity: 1;
+}
+
+.fadein {
+  animation: 0.5s ease 0s normal forwards 1 fadein;
+  opacity: 1;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.lock-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 25px;
+  margin-top: 15px;
+}
+
+.lock-menu i {
+  color: white;
+}
+
+.dot {
+  padding-top: 3px;
+  height: 30px;
+  width: 30px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.vertical-center {
+  min-height: 86%; /* Fallback for browsers do NOT support vh unit */
+  min-height: 86vh; /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+}
+
+.menu-titulo-size {
+  font-size: 1.9rem;
+}
+
+.over-auto {
+  overflow: auto;
+}
+
+.center-align {
+  margin: 0 auto;
+}

@@ -1,0 +1,54 @@
+.margin-btn-menu {
+  margin-bottom: 2px;
+}
+
+.menu-shadow {
+  box-shadow: 4px 0px 0px 0px #f8f8f8;
+}
+
+.btn {
+  border-radius: 1px;
+  box-shadow: none;
+}
+
+.icon-color {
+  color: grey;
+}
+
+.btn-block + .btn-block {
+  margin-top: 0;
+}
+
+.border-left-size {
+  border-left-width: 4px;
+}
+
+.border-left-color {
+  &-blue {
+    border-left-color: blue !important;
+    .active {
+      border-left-color: blue !important;
+    }
+  }
+
+  &-red {
+    border-left-color: crimson !important;
+    .active {
+      border-left-color: crimson !important;
+    }
+  }
+
+  &-orange {
+    border-left-color: darkgoldenrod !important;
+    .active {
+      border-left-color: darkgoldenrod !important;
+    }
+  }
+
+  &-green {
+    border-left-color: darkgreen !important;
+    .active {
+      border-left-color: darkgreen !important;
+    }
+  }
+}

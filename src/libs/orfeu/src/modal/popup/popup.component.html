@@ -1,0 +1,21 @@
+<div class="popup-confirmacao sombra-padrao" [@state]="animacao" (@state.done)="_onAnimacaoDone()">
+    <div class="popup-content">
+
+        <div class="padding-10">
+
+            <div class="icon-popup">
+                <i class="far fa-times-circle" *ngIf="config?.tipo == 'E'"></i>
+                <i class="fas fa-exclamation-triangle" *ngIf="config?.tipo == 'A'"></i>
+            </div>
+
+            <h5 class="mensagem">{{ config?.titulo }}</h5>
+
+            <h6 class="mensagem">{{ config?.mensagem }}</h6>
+        </div>
+
+        <div class="popup-acoes" *ngIf="!!config?.botoes">
+            <button aplsButton class="btn-small" *ngFor="let item of config?.botoes; let i = index" (click)="callClick(item)" [color]="item?.color || 'primary'"
+                [tabindex]="i">{{item.nome}}</button>
+        </div>
+    </div>
+</div>

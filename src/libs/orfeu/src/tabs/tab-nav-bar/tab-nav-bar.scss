@@ -1,0 +1,35 @@
+@import '../common';
+
+@mixin tab-header {
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.apls-tab-nav-bar {
+  @include tab-header;
+}
+
+.apls-tab-links {
+  position: relative;
+  display: flex;
+}
+
+.apls-tab-link {
+  @include tab-label;
+  vertical-align: top;
+  text-decoration: none;  
+  position: relative;
+  overflow: hidden; 
+
+  [apls-stretch-tabs] & {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+}
+
+@media ($apls-xsmall) {
+  .apls-tab-link {
+    min-width: 72px;
+  }
+}

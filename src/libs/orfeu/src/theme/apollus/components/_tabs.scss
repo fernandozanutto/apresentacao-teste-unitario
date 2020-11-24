@@ -1,0 +1,65 @@
+@mixin tabs($color, $disable) {
+  $apls-tab-animation-duration: 500ms !default;
+  $ease-in-out-curve-function: cubic-bezier(0.35, 0, 0.25, 1) !default;
+
+  .apls-tab-nav-bar,
+  .apls-tab-header {
+    border-bottom: 1px solid #eae9e9;
+    margin-bottom: 15px;
+  }
+
+  .apls-tab-group-inverted-header {
+    .apls-tab-nav-bar,
+    .apls-tab-header {
+      border-bottom: none;
+    }
+  }
+
+  .apls-tab-label,
+  .apls-tab-link {
+    color: black;
+
+    &.apls-tab-disabled {
+      color: $disable;
+    }
+  }
+
+  .apls-tab-header-pagination-chevron {
+    border-color: $disable;
+  }
+
+  .apls-tab-header-pagination-disabled .apls-tab-header-pagination-chevron {
+    border-color: $disable;
+  }
+
+  .apls-tab-icones-label {
+    background: $color;
+  }
+
+  .apls-tab-icones-labels {
+    background: $color;
+  }
+
+  .apls-tab-icones-label:focus:not(.apls-tab-icones-disabled) {
+    color: $color;
+  }
+
+  .apls-tab-group[class*="apls-background-"] .apls-tab-header,
+  .apls-tab-nav-bar[class*="apls-background-"] {
+    border-bottom: none;
+    border-top: none;
+  }
+
+  .apls-ink-bar {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    transition: $apls-tab-animation-duration $ease-in-out-curve-function;
+    background-color: $color;
+
+    .apls-tab-group-inverted-header & {
+      bottom: auto;
+      top: 0;
+    }
+  }
+}

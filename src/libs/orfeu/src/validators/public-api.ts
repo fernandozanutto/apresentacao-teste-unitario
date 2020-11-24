@@ -1,0 +1,1 @@
+export * from './edicao-andamento-validator';
