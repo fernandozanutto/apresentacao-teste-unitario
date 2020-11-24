@@ -144,7 +144,6 @@ export class CampoAreasComponent implements OnInit {
     private usuarioLogado: UsuarioLogado,
     private aplsCache: AplsCache,
     private collectionsUtils: CollectionsUtils,
-    private httpApollus: HttpApollus,
     private areaService: AreaService,
   ) {
     this.INATIVO = "INATIVO"

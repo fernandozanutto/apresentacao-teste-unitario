@@ -1,0 +1,6 @@
+{
+    "10982": [{"id":10983,"codigo":"14654","descricao":"LOGISTICA","status":"A","tipoInscricao":1,"inscricao":"00000000000000"}],
+    "1038": [{"id":1043,"codigo":"CMP","descricao":"Compras","status":"A","tipoInscricao":1,"inscricao":"00000000000000"},{"id":1052,"codigo":"EST","descricao":"Estoque","status":"A","tipoInscricao":1,"inscricao":"00000000000000"}],
+    "12352": [{"id":12417,"codigo":"AN ERGON","descricao":"AN ERGON","status":"A","tipoInscricao":1,"inscricao":""}],
+    "10990": [{"id":10994,"codigo":"GER","descricao":"Gerência","status":"A","tipoInscricao":1,"inscricao":""},{"id":10993,"codigo":"RH","descricao":"Recursos Humanos","status":"A","tipoInscricao":1,"inscricao":""}]
+}
